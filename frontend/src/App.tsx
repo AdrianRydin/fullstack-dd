@@ -8,11 +8,18 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Receipt from "./pages/Receipt/Receipt";
 import Header from "./components/Header/Header";
+import MenuOverlay from "./components/MenuOverlay/MenuOverlay";
+import { useState } from "react";
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <BrowserRouter>
-      <Header />
+      <Header
+        isMenuOpen={isMenuOpen}
+        onToggleMenu={() => setIsMenuOpen((prev) => !prev)}
+      />
+      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />

@@ -1,10 +1,14 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useState } from "react";
+
 import HeaderLayout from "./HeaderLayout";
 
-export default function BackHeader() {
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function BackHeader({
+  isMenuOpen,
+  onToggleMenu,
+}: {
+  isMenuOpen: boolean;
+  onToggleMenu: () => void;
+}) {
   return (
     <HeaderLayout>
       <ArrowBackIcon
@@ -13,8 +17,8 @@ export default function BackHeader() {
         sx={{ fontSize: 40, color: "#dfd8c9" }}
       />
       <aside
-        className={`hamburger-menu-container ${isOpen ? "open" : ""}`}
-        onClick={() => setIsOpen((prev) => !prev)}
+        className={`hamburger-menu-container ${isMenuOpen ? "open" : ""}`}
+        onClick={onToggleMenu}
       >
         <span className="header-span-1"></span>
         <span className="header-span-2"></span>

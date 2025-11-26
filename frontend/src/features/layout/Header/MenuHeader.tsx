@@ -1,12 +1,16 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./headerlayout.css";
-import { useState } from "react";
+
 import HeaderLayout from "./HeaderLayout";
 
-export default function MenuHeader() {
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function MenuHeader({
+  isMenuOpen,
+  onToggleMenu,
+}: {
+  isMenuOpen: boolean;
+  onToggleMenu: () => void;
+}) {
   return (
     <HeaderLayout>
       <ArrowBackIcon
@@ -18,8 +22,8 @@ export default function MenuHeader() {
       <section className="menu-header-cart-container">
         <ShoppingCartIcon sx={{ fontSize: 30, color: "#dfd8c9" }} />
         <aside
-          className={`hamburger-menu-container ${isOpen ? "open" : ""}`}
-          onClick={() => setIsOpen((prev) => !prev)}
+          className={`hamburger-menu-container ${isMenuOpen ? "open" : ""}`}
+          onClick={onToggleMenu}
         >
           <span className="header-span-1"></span>
           <span className="header-span-2"></span>

@@ -1,18 +1,24 @@
-import { useState } from "react";
 import "../../../components/Header/header.css";
-import HeaderLayout from "./HeaderLayout";
-export default function DefaultHeader() {
-  const [isOpen, setIsOpen] = useState(false);
+
+export default function DefaultHeader({
+  isMenuOpen,
+  onToggleMenu,
+}: {
+  isMenuOpen: boolean;
+  onToggleMenu: () => void;
+}) {
   return (
-    <HeaderLayout>
-      <aside
-        className={`hamburger-menu-container ${isOpen ? "open" : ""}`}
-        onClick={() => setIsOpen((prev) => !prev)}
-      >
-        <span className="header-span-1"></span>
-        <span className="header-span-2"></span>
-        <span className="header-span-3"></span>
-      </aside>
-    </HeaderLayout>
+    <header className="header-container-default">
+      <div className="header-inner-default">
+        <aside
+          className={`hamburger-menu-container ${isMenuOpen ? "open" : ""}`}
+          onClick={onToggleMenu}
+        >
+          <span className="header-span-1"></span>
+          <span className="header-span-2"></span>
+          <span className="header-span-3"></span>
+        </aside>
+      </div>
+    </header>
   );
 }

@@ -1,0 +1,39 @@
+.menu-container {
+  z-index: 9;
+  position: fixed;
+  inset: 0;
+  background-color: #313131;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transform: translateX(100%);
+  pointer-events: none;
+}
+
+.menu-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link-container h1 {
+  font-family: "Lora", sans-serif;
+  font-weight: normal;
+  color: #fff;
+}
+
+.line {
+  width: 250px;
+  height: 2px;
+  background-color: #ffffff;
+  margin: 1rem 0;
+}
