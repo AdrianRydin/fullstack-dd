@@ -80,7 +80,7 @@
 }
 
 .hamburger-menu-container.open .header-span-3 {
-  bottom: auto; /* släpp bottom */
+  bottom: auto;
   top: 50%;
   transform: translateY(-50%) rotate(-45deg);
 }
