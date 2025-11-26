@@ -1,10 +1,10 @@
-import { useState } from "react";
-import logo from "../../assets/logo-icon-only.png";
-import viteLogo from "/vite.svg";
-import "./home.css";
+import { useState } from "react"
+import logo from "../../assets/logo-icon-only.png"
+import viteLogo from "/vite.svg"
+import "./home.css"
 
 function Home() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -29,7 +29,7 @@ function Home() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home
