@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./login.css";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../features/layout/Footer/Footer";
 
 export default function Login() {
   return (
