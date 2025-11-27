@@ -27,8 +27,8 @@ export function MenuCard({
 
         {onAddToCart && (
           <button className="secondary-button" onClick={onAddToCart}>
-  <span className="secondary-button-label">Add to cart</span>
-  <span className="secondary-button-icon"><img src="./src/assets/add-to-cart.png" alt="" /></span>
+            <span className="secondary-button-label">Add to cart</span>
+            <span className="secondary-button-icon"><img src="./src/assets/add-to-cart.png" alt="" /></span>
           </button>
         )}
       </div>
