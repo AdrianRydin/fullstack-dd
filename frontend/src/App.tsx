@@ -27,11 +27,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/receipt" element={<Receipt />} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </BrowserRouter>
-  );
 }
 
 export default App;
