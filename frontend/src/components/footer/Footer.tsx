@@ -1,7 +1,7 @@
 import "./footer.css";
-import logo from "../../../public/Umami-Logo.png";
-import bamboo1 from "../../assets/bamboo1.png";
-import bamboo2 from "../../assets/bamboo2.png";
+import logo from "/Umami-Logo.png";
+import bamboo1 from "../../assets/bambo1.png";
+import bamboo2 from "../../assets/bambo2.png";
 
 type FooterProps = {
   showLogo?: boolean;
