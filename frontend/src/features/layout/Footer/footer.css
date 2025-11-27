@@ -2,6 +2,11 @@
   min-height: 10rem;
   text-align: center;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #F7F6F2;
 }
 .bamboo {
   position: absolute;
@@ -10,18 +15,16 @@
   width: auto;
 }
 .bamboo-left {
-  left: -4.3rem;
+  left: -9.5rem;
   top: 0rem;
 }
 .bamboo-right {
   bottom: -2rem;
-  right: -3.3rem;
+  right: -9rem;
   object-fit: contain;
 }
 .footer-logo {
-  height: 8rem;
-  width: auto;
-  margin-bottom: -3rem;
+  margin-bottom: 1rem;
 }
 .footer-title {
   font-family: "GangOfThree";

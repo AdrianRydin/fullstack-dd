@@ -1,4 +1,4 @@
-import Footer from "../../components/footer/Footer";
+import Footer from "../../features/layout/Footer/Footer";
 import "./cart.css";
 
 export default function Cart() {

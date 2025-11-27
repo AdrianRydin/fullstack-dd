@@ -1,0 +1,43 @@
+.value-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.value-heading {
+  font-size: 1.5rem;
+  font-weight: 500;
+  position: relative;
+  margin-bottom: 2rem;
+}
+.value-heading::after {
+  content: "";
+  display: block;
+  width: 11rem;
+  height: 1px;
+  background-color: #e87461;
+  margin: 0.5rem auto 0;
+}
+.value-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #535947;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 1rem;
+}
+.values {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
+}
+.value-text {
+  font-size: 1rem;
+  font-weight: bold;
+}
