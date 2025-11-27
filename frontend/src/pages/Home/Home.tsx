@@ -9,7 +9,7 @@ function Home() {
     </section>
       <Footer />
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home
