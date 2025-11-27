@@ -1,0 +1,50 @@
+.footer {
+  min-height: 10rem;
+  text-align: center;
+  position: relative;
+}
+.bamboo {
+  position: absolute;
+  z-index: 1;
+  height: 8rem;
+  width: auto;
+}
+.bamboo-left {
+  left: -4.3rem;
+  top: 0rem;
+}
+.bamboo-right {
+  bottom: -2rem;
+  right: -3.3rem;
+  object-fit: contain;
+}
+.footer-logo {
+  height: 8rem;
+  width: auto;
+  margin-bottom: -3rem;
+}
+.footer-title {
+  font-family: "GangOfThree";
+  color: #e87461;
+  font-size: 3.8rem;
+  letter-spacing: 0.4rem;
+}
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -1.5rem;
+  position: relative;
+}
+.info-section {
+  padding: 0.3rem;
+}
+.info-heading {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.info-text {
+  font-size: 11px;
+  line-height: 1.2;
+}
