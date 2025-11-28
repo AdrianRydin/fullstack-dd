@@ -10,6 +10,7 @@ import Receipt from "./pages/Receipt/Receipt"
 import Header from "./components/Header/Header"
 import MenuOverlay from "./components/MenuOverlay/MenuOverlay"
 import { useState } from "react"
+import Footer from "./features/layout/Footer/Footer"
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -29,6 +30,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

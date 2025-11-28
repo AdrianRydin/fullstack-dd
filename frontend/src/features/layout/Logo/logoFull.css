@@ -1,0 +1,28 @@
+.logo-wrapper {
+  position: relative;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-full {
+  height: 11rem;
+  width: auto;
+  position: relative;
+  z-index: 2;
+}
+.logo-bamboo-left,
+.logo-bamboo-right {
+  position: absolute;
+  height: 8rem;
+  width: auto;
+  z-index: 1;
+}
+.logo-bamboo-left {
+  left: -6.8rem;
+  top: -2rem;
+}
+.logo-bamboo-right {
+  right: -6rem;
+  bottom: -5rem; 
+}

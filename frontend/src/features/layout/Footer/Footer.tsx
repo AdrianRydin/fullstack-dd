@@ -1,12 +1,12 @@
-import "./footer.css"
-import logo from "../../../public/Umami-Logo.png"
-import bamboo1 from "../../assets/bambo1.png"
-import bamboo2 from "../../assets/bambo2.png"
+import "./footer.css";
+import logo from "../../../assets/logo-full-transparent.png";
+import bamboo1 from "../../../assets/bambo1.png";
+import bamboo2 from "../../../assets/bambo2.png";
 
 type FooterProps = {
-  showLogo?: boolean
-  showTextBamboo?: boolean
-}
+  showLogo?: boolean;
+  showTextBamboo?: boolean;
+};
 
 function Footer({ showLogo = true, showTextBamboo = true }: FooterProps) {
   return (
@@ -18,7 +18,6 @@ function Footer({ showLogo = true, showTextBamboo = true }: FooterProps) {
             alt="Umami logo of sushi and chopsticks"
             className="footer-logo"
           />
-          <h1 className="footer-title">UMAMI</h1>
         </>
       )}
       {showTextBamboo && (
@@ -52,7 +51,7 @@ function Footer({ showLogo = true, showTextBamboo = true }: FooterProps) {
         </section>
       )}
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
