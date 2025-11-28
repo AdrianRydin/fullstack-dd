@@ -1,5 +1,7 @@
 .menu-page {
   padding-top: 0.3rem;
+  position: relative;
+  width: 100%;
 }
 
 .menu-title {
@@ -13,9 +15,8 @@
   gap: 0.7rem;
 }
 
-
 #root {
- margin: 0 auto;
+  margin: 0 auto;
   padding: 2rem;
   text-align: center;
   --glass-bg: rgba(255, 255, 255, 0.12);

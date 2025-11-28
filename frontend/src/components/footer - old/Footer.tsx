@@ -1,4 +1,3 @@
-import "./footer.css";
 import logo from "/Umami-Logo.png";
 import bamboo1 from "../../assets/bambo1.png";
 import bamboo2 from "../../assets/bambo2.png";

@@ -1,5 +1,5 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
+import { Link } from "react-router-dom";
 import HeaderLayout from "./HeaderLayout";
 
 export default function BackHeader({
@@ -11,11 +11,13 @@ export default function BackHeader({
 }) {
   return (
     <HeaderLayout>
-      <ArrowBackIcon
-        className="back-arrow"
-        fontSize="large"
-        sx={{ fontSize: 40, color: "#dfd8c9" }}
-      />
+      <Link to={"/menu"}>
+        <ArrowBackIcon
+          className="back-arrow"
+          fontSize="large"
+          sx={{ fontSize: 40, color: "#dfd8c9" }}
+        />
+      </Link>
       <aside
         className={`hamburger-menu-container ${isMenuOpen ? "open" : ""}`}
         onClick={onToggleMenu}
