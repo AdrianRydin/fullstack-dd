@@ -2,10 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  background-color: tomato;
+  background-color: #f7f6f2;
   border-radius: 23px;
-  height: 100px;
   width: 100%;
   padding: 1rem;
 }
@@ -33,8 +31,24 @@
   transform: translateX(-50%);
 }
 
+/* Bilderna */
+.cart-item-card img {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* texten */
+.cart-item-name,
+.cart-item-qty,
+.cart-item-total,
+.cart-item-desc {
+  font-family: "Lora";
+}
+
 .cart-item-desc {
   font-size: 10px;
+  color: #535947;
 }
 
 .cart-item-name,
@@ -46,4 +60,13 @@
 .cart-item-total {
   justify-self: flex-end;
   margin-left: auto;
+  color: #535947;
+}
+
+.cart-item-name {
+  color: #e87461;
+}
+
+.cart-item-qty {
+  color: #535947;
 }

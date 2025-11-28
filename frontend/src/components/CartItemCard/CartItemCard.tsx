@@ -1,13 +1,19 @@
-import IncreaseButton from "../../features/layout/Cart/IncreaseButton"
+import CartButton from "../../features/layout/Cart/CartButton"
 import { type SushiRoll } from "../../pages/Cart/Cart"
+import AddIcon from "@mui/icons-material/Add"
+import RemoveIcon from "@mui/icons-material/Remove"
+import DeleteIcon from "@mui/icons-material/Delete"
 
 import "./CartItemCard.css"
 
-interface Props {
+interface CartCardProps {
   item: SushiRoll
+  increase: (id: number) => void
+  decrease: (id: number) => void
+  remove: (id: number) => void
 }
 
-function CartItemCard({ item }: Props) {
+function CartItemCard({ item, increase, remove, decrease }: CartCardProps) {
   return (
     <section className="cart-item-card">
       <img src={item.image} />
@@ -18,11 +24,32 @@ function CartItemCard({ item }: Props) {
 
         <section className="cart-item-bottom-wrapper">
           <section className="cart-qty-controls">
-            <IncreaseButton />
+            {/* Decrease eller Remove beroende på quantity */}
+            {item.quantity > 1 ? (
+              <CartButton
+                onClick={() => decrease(item.id)}
+                icon={<RemoveIcon />}
+                ariaLabel="Decrease quantity"
+              />
+            ) : (
+              <CartButton
+                onClick={() => remove(item.id)}
+                icon={<DeleteIcon />}
+                ariaLabel="Remove item"
+              />
+            )}
+
             <p className="cart-item-qty">{item.quantity}</p>
-            <IncreaseButton />
+
+            {/* Increase */}
+            <CartButton
+              onClick={() => increase(item.id)}
+              icon={<AddIcon />}
+              ariaLabel="Increase quantity"
+            />
           </section>
-          <p className="cart-item-total">239 kr</p>
+
+          <p className="cart-item-total">{item.price * item.quantity} kr</p>
         </section>
       </section>
     </section>

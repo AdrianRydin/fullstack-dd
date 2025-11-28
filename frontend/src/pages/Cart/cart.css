@@ -6,7 +6,6 @@
   align-items: center;
   margin: 5rem 0 5rem 0;
   padding: 0 3rem 0 3rem;
-  border: 2px solid black;
 }
 
 .cart-list-wrapper {
@@ -14,7 +13,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  background-color: pink;
+  background-color: var(--glass-light);
+  border: 2px solid aliceblue;
   min-height: 120px;
   border-radius: 15px;
   width: 100%;
@@ -28,13 +28,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: pink;
+  background-color: var(--glass-light);
   border-radius: 15px;
   height: fit-content;
   width: 100%;
   margin: 1rem;
   margin-bottom: 3rem;
   padding: 0.5rem 1rem;
+  color: black;
+  font-family: "Lora";
 }
 
 .cart-price-grouping {
