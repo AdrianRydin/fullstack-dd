@@ -1,6 +1,5 @@
 import CartItemCard from "../../components/CartItemCard/CartItemCard"
 import Button from "../../components/Button/Button"
-import Footer from "../../components/footer/Footer"
 import "./cart.css"
 
 // data/sushiRolls.ts
@@ -83,8 +82,6 @@ export default function Cart() {
 
         <Button text="Review Order" />
       </section>
-
-      <Footer />
     </>
   )
 }
