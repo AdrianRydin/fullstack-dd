@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #F7F6F2;
+  color: #f7f6f2;
 }
 .bamboo {
   position: absolute;
@@ -15,7 +15,7 @@
   width: auto;
 }
 .bamboo-left {
-  left: -9.5rem;
+  left: -9rem;
   top: 0rem;
 }
 .bamboo-right {

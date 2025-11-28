@@ -1,4 +1,3 @@
-import Footer from "../../features/layout/Footer/Footer";
 import "./menu.css";
 import MenuCard from "../../components/MenuCard/MenuCard";
 import { MENU_ITEMS } from "../__tests__/index.ts";
@@ -19,7 +18,6 @@ export default function Menu() {
           />
         ))}
       </div>
-      <Footer />
     </section>
   );
 }
