@@ -14,7 +14,7 @@ export default function MenuHeader({
 }) {
   return (
     <HeaderLayout>
-      <Link to={"/home"}>
+      <Link to={"/"}>
         <ArrowBackIcon
           className="back-arrow"
           fontSize="large"
