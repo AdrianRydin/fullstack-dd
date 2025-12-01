@@ -1,6 +1,7 @@
 import "./menu-overlay.css";
 import { useEffect, useRef } from "react";
 import { animate } from "motion";
+import { Link } from "react-router-dom";
 
 type MenuOverlayProps = {
   isOpen: boolean;
@@ -48,7 +49,15 @@ export default function Menu({ isOpen, onClose }: MenuOverlayProps) {
           <div className="line"></div>
         </aside>
         <aside className="link-container">
-          <h1>Login | Register</h1>
+          <h1>
+            <Link to="/login" onClick={onClose}>
+              Login
+            </Link>{" "}
+            <span className="sep">|</span>
+            <Link to="/register" onClick={onClose}>
+              Register
+            </Link>
+          </h1>
           <div className="line"></div>
         </aside>
         <aside className="link-container">
