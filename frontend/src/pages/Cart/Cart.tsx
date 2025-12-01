@@ -2,7 +2,9 @@ import CartItemCard from "../../components/CartItemCard/CartItemCard"
 import Button from "../../components/Button/Button"
 import "./cart.css"
 
-import { useState } from "react"
+import { useEffect } from "react"
+
+import { useCart } from "../../features/cart/useCart"
 
 // data/sushiRolls.ts
 export interface SushiRoll {
@@ -59,32 +61,11 @@ const sushiRolls: SushiRoll[] = [
 ]
 
 export default function Cart() {
-  const [items, setItems] = useState<SushiRoll[]>(sushiRolls)
+  const { items, increase, decrease, remove, totalPrice, setItems } = useCart()
 
-  const increase = (id: number) => {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    )
-  }
-
-  const decrease = (id: number) => {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
-          : item
-      )
-    )
-  }
-
-  const removeItem = (id: number) => {
-    setItems((prev) => prev.filter((item) => item.id !== id))
-  }
-
-  // Räknar total pris
-  const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0)
+  useEffect(() => {
+    setItems(sushiRolls)
+  }, [])
 
   return (
     <>
@@ -94,9 +75,9 @@ export default function Cart() {
             <CartItemCard
               key={item.id}
               item={item}
-              increase={increase}
-              decrease={decrease}
-              remove={removeItem}
+              increase={() => increase(item.id)}
+              decrease={() => decrease(item.id)}
+              remove={() => remove(item.id)}
             />
           ))}
         </section>
@@ -104,7 +85,7 @@ export default function Cart() {
         <section className="cart-total-wrapper">
           <section className="cart-price-grouping">
             <p className="cart-total-small-text">Items</p>
-            <p className="cart-total-small-text">{total} kr</p>
+            <p className="cart-total-small-text">{totalPrice} kr</p>
           </section>
           <section className="cart-price-grouping">
             <p className="cart-total-small-text">Delivery</p>
@@ -112,7 +93,7 @@ export default function Cart() {
           </section>
           <section className="cart-price-grouping">
             <p className="cart-total-big-text">Total</p>
-            <p className="cart-total-big-text">{total + 49}</p>
+            <p className="cart-total-big-text">{totalPrice + 49}</p>
           </section>
         </section>
 
