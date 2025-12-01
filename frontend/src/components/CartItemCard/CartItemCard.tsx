@@ -1,16 +1,16 @@
-import CartButton from "../../features/layout/Cart/CartButton"
-import { type SushiRoll } from "../../pages/Cart/Cart"
-import AddIcon from "@mui/icons-material/Add"
-import RemoveIcon from "@mui/icons-material/Remove"
-import DeleteIcon from "@mui/icons-material/Delete"
+import CartButton from "../../features/layout/Cart/CartButton";
+import { type SushiRoll } from "../../pages/Cart/Cart";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-import "./CartItemCard.css"
+import "./CartItemCard.css";
 
 interface CartCardProps {
-  item: SushiRoll
-  increase: (id: number) => void
-  decrease: (id: number) => void
-  remove: (id: number) => void
+  item: SushiRoll;
+  increase: (id: number) => void;
+  decrease: (id: number) => void;
+  remove: (id: number) => void;
 }
 
 function CartItemCard({ item, increase, remove, decrease }: CartCardProps) {
@@ -53,7 +53,7 @@ function CartItemCard({ item, increase, remove, decrease }: CartCardProps) {
         </section>
       </section>
     </section>
-  )
+  );
 }
 
-export default CartItemCard
+export default CartItemCard;
