@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  margin: 4rem 0 5rem;  
-  padding-right: 3rem; 
+  margin: 4rem 0 5rem;
+  padding-right: 3rem;
 }
 
 .menu-title {
@@ -14,7 +14,6 @@
   margin: 0;
 }
 
-
 .menu-title-dash {
   display: inline-block;
   width: 2.5rem;
@@ -22,7 +21,6 @@
   background-color: #f46a4e;
   transform: translateY(1px);
 }
-
 
 .menu-list {
   display: flex;

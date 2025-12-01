@@ -4,7 +4,7 @@ import { MENU_ITEMS } from "../__tests__/index.ts";
 import LogoFull from "../../features/layout/Logo/LogoFull";
 
 export default function Menu() {
-   return (
+  return (
     <main className="menu-page">
       <LogoFull />
 
@@ -25,7 +25,6 @@ export default function Menu() {
           />
         ))}
       </div>
-      <Footer />
     </main>
   );
 }
