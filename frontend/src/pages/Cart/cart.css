@@ -13,10 +13,14 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  background-color: var(--glass-light);
-  border: 2px solid aliceblue;
-  min-height: 120px;
-  border-radius: 15px;
+  box-sizing: border-box;
+  background: var(--glass-bg);
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: var(--glass-shadow);
+  color: #f4f4f4;
   width: 100%;
   margin: 1rem;
   padding: 1rem;

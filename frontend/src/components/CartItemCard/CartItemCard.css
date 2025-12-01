@@ -1,11 +1,12 @@
 .cart-item-card {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f7f6f2;
   border-radius: 23px;
   width: 100%;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 .cart-item-inner-wrapper {
@@ -17,7 +18,7 @@
 
 .cart-item-bottom-wrapper {
   display: flex;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   width: 100%;
   justify-content: center;
   position: relative;
@@ -25,6 +26,8 @@
 
 .cart-qty-controls {
   display: flex;
+  box-sizing: border-box;
+  align-items: center;
   gap: 0.5rem;
   position: absolute;
   left: 50%;
@@ -49,6 +52,8 @@
 .cart-item-desc {
   font-size: 10px;
   color: #535947;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
 .cart-item-name,
