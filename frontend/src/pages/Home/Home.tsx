@@ -9,7 +9,6 @@ function Home() {
       <section className="test-section">
         <h1>HomePage</h1>
       </section>
-      <Footer />
     </>
   );
 }
