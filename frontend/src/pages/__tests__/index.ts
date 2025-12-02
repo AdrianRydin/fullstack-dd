@@ -31,4 +31,11 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 299,
     image: "/src/assets/Sushi-plate4.png",
   },
+  {
+    id: "veggie-delight",
+    name: "Veggie Delight Roll",
+    description: "Cucumber, avocado, carrot, and asparagus",
+    price: 149,
+    image: "/src/assets/Sushi-plate2.png",
+  },
 ];
