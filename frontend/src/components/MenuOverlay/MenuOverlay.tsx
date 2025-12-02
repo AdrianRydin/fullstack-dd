@@ -1,7 +1,7 @@
 import "./menu-overlay.css";
 import { useEffect, useRef } from "react";
 import { animate } from "motion";
-import { Link } from "react-router-dom";
+import { MenuLink } from "../../features/layout/MenuLink/MenuLink";
 
 type MenuOverlayProps = {
   isOpen: boolean;
@@ -41,36 +41,16 @@ export default function Menu({ isOpen, onClose }: MenuOverlayProps) {
       });
     }
   }, [isOpen]);
+
   return (
     <section className="menu-container" ref={containerRef} onClick={onClose}>
       <aside className="menu-panel" onClick={(e) => e.stopPropagation()}>
-        <aside className="link-container">
-          <h1>Home</h1>
-          <div className="line"></div>
-        </aside>
-        <aside className="link-container">
-          <h1>
-            <Link to="/login" onClick={onClose}>
-              Login
-            </Link>{" "}
-            <span className="sep">|</span>
-            <Link to="/register" onClick={onClose}>
-              Register
-            </Link>
-          </h1>
-          <div className="line"></div>
-        </aside>
-        <aside className="link-container">
-          <h1>About us</h1>
-          <div className="line"></div>
-        </aside>
-        <aside className="link-container">
-          <h1>Cart</h1>
-          <div className="line"></div>
-        </aside>
-        <aside className="link-container">
-          <h1>Contact</h1>
-        </aside>
+        <MenuLink to="/" label="Home" onClose={onClose} />
+        <MenuLink to="/menu" label="Menu" onClose={onClose} />
+        <MenuLink to="/register" label="Login/Register" onClose={onClose} />
+        <MenuLink to="/about" label="About us" onClose={onClose} />
+        <MenuLink to="/cart" label="Cart" onClose={onClose} />
+        <MenuLink to="/contact" label="Contact" onClose={onClose} />
       </aside>
     </section>
   );

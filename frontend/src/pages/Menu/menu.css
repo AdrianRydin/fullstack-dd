@@ -1,5 +1,29 @@
-body,
-html {
-  min-height: 100vh;
-  width: 100%;
+.menu-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 4rem 0 5rem;
+  padding-right: 3rem;
+}
+
+.menu-title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #f5f0e6;
+  margin: 0;
+}
+
+.menu-title-dash {
+  display: inline-block;
+  width: 2.5rem;
+  height: 2px;
+  background-color: #f46a4e;
+  transform: translateY(1px);
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
 }

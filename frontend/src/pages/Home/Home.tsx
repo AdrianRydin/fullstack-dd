@@ -1,15 +1,16 @@
 import "./home.css";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../features/layout/Footer/Footer";
+import LogoFull from "../../features/layout/Logo/LogoFull";
 
 function Home() {
   return (
     <>
-    <section className="test-section">
-      <h1>HomePage</h1>
-    </section>
-      <Footer />
+      <LogoFull />
+      <section className="test-section">
+        <h1>HomePage</h1>
+      </section>
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

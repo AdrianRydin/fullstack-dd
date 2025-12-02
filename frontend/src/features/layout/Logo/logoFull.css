@@ -1,0 +1,37 @@
+.logo-wrapper {
+  position: relative;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 3rem 4rem;
+}
+
+.logo-full {
+  height: auto;
+  width: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-bamboo {
+  position: absolute;
+  width: auto;
+  height: 150px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+.logo-bamboo-left {
+  top: 0;
+  left: 0;
+  transform: translate(-48%, -10%);
+}
+
+.logo-bamboo-right {
+  right: 0;
+  bottom: 0;
+  transform: translate(45%, 65%);
+}
+
