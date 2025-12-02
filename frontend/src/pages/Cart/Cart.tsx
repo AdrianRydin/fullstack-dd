@@ -5,6 +5,7 @@ import "./cart.css";
 import { useEffect } from "react"
 
 import { useCart } from "../../features/cart/useCart"
+import { useNavigate } from "react-router-dom";
 
 // data/sushiRolls.ts
 export interface SushiRoll {
@@ -61,6 +62,7 @@ const sushiRolls: SushiRoll[] = [
 ];
 
 export default function Cart() {
+  const navigate = useNavigate();
   const { items, increase, decrease, remove, totalPrice, setItems } = useCart()
 
   useEffect(() => {
@@ -97,7 +99,7 @@ export default function Cart() {
           </section>
         </section>
 
-        <Button text="Review Order" />
+        <Button text="Review Order" onClick={() => navigate("/review")}/>
       </section>
     </>
   );
