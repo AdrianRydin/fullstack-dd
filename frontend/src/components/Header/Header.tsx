@@ -22,9 +22,11 @@ export default function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
   }
 
   const backHeaderPaths = [
+    "/about",
     "/cart",
     "/login",
     "/register",
+    "/review",
     "/profile",
     "/reviewOrder",
   ];
