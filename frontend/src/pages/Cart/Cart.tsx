@@ -1,6 +1,6 @@
-import CartItemCard from "../../components/CartItemCard/CartItemCard"
-import Button from "../../components/Button/Button"
-import "./cart.css"
+import CartItemCard from "../../components/CartItemCard/CartItemCard";
+import Button from "../../components/Button/Button";
+import "./cart.css";
 
 import { useEffect } from "react"
 
@@ -8,12 +8,12 @@ import { useCart } from "../../features/cart/useCart"
 
 // data/sushiRolls.ts
 export interface SushiRoll {
-  id: number
-  name: string
-  description: string
-  price: number
-  quantity: number
-  image: string
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  quantity: number;
+  image: string;
 }
 
 // Fake data tills backend finns
@@ -58,7 +58,7 @@ const sushiRolls: SushiRoll[] = [
     quantity: 3,
     image: "/images/sushi/salmon-avocado.jpg",
   },
-]
+];
 
 export default function Cart() {
   const { items, increase, decrease, remove, totalPrice, setItems } = useCart()
@@ -100,5 +100,5 @@ export default function Cart() {
         <Button text="Review Order" />
       </section>
     </>
-  )
+  );
 }
