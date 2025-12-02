@@ -1,6 +1,4 @@
 import { useState } from "react";
-// import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import "../../styles/RegisterLogin.css";
 import topLeftImg from "../../assets/bambo1.png";
 import bottomRightImg from "../../assets/bambo2.png";
@@ -56,7 +54,6 @@ export default function Login() {
           className="bottom-right-img"
         />
       </section>
-      <Footer />
     </>
   );
 }
