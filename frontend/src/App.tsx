@@ -11,6 +11,7 @@ import Header from "./components/Header/Header";
 import MenuOverlay from "./components/MenuOverlay/MenuOverlay";
 import { useState } from "react";
 import Footer from "./features/layout/Footer/Footer";
+import Review from "./pages/Review/Review";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,6 +27,7 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
+        <Route path="/review" element={<Review />} />
         <Route path="/receipt" element={<Receipt />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
