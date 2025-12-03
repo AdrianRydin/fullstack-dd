@@ -4,7 +4,7 @@
   gap: 16px;
 }
 
-.favorites__header {
+/*.favorites__header {
   display: flex;
   align-items: center;
   margin-left: -40px;
@@ -17,7 +17,7 @@
   height: 2px;
   border-radius: 999px;
   background: #e35b55;
-}
+}*/
 
 .favorites__title {
   margin: 0;

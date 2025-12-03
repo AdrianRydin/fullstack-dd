@@ -14,7 +14,7 @@ import Footer from "./features/layout/Footer/Footer";
 import Review from "./pages/Review/Review";
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   return (
     <BrowserRouter>
       <Header
@@ -34,7 +34,7 @@ function App() {
       </Routes>
       <Footer />
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
