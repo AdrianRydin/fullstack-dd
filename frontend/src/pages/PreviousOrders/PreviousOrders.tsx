@@ -52,6 +52,17 @@ export const previousOrders: PreviousOrder[] = [
       { id: 1, name: "Umami Mix Platter", quantity: 1, price: 95 },
     ],
   },
+  {
+    id: "ORD-102333",
+    date: "2025-02-15",
+    status: "processing",
+    totalPrice: 189,
+    items: [
+      { id: 4, name: "Crispy Salmon Roll", quantity: 1, price: 99 },
+      { id: 1, name: "Umami Mix Platter", quantity: 1, price: 95 },
+      { id: 1, name: "Spicy Tuna Roll", quantity: 1, price: 95 },
+    ],
+  },
 ]
 
 function PreviousOrdersPage() {

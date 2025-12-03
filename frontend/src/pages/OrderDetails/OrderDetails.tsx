@@ -16,7 +16,9 @@ function OrderDetailsPage() {
         <p>Date: {order.date}</p>
         <p>Status: {order.status}</p>
         <p>Order id: {order.id}</p>
-        <p>Order Total: {order.totalPrice} kr</p>
+        <p className="order-details-total-price">
+          Order Total: {order.totalPrice} kr
+        </p>
       </section>
       <section className="order-details-list-wrapper">
         {order.items.map((item) => (

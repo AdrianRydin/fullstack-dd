@@ -36,9 +36,8 @@
   width: 100%;
   margin: 1rem;
   margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   color: black;
-  font-family: "Lora";
 }
 
 .order-details-list-wrapper {
@@ -57,4 +56,10 @@
   margin: 1rem;
   padding: 1rem;
   gap: 0.5rem;
+}
+
+.order-details-total-price {
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 0.5rem;
 }
