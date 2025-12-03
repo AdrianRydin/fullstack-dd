@@ -31,4 +31,14 @@
   font-weight: 400;
   color: #f5f0e6;
   margin: 0;
+  margin-bottom: 2rem;
+}
+
+.prevorder-page-title::after {
+  content: "";
+  display: block;
+  width: 12rem;
+  height: 1px;
+  background-color: #e87461;
+  margin: 0.5rem auto 0;
 }

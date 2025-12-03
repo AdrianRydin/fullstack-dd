@@ -72,6 +72,7 @@ export default function Cart() {
   return (
     <>
       <section className="cart-page-wrapper">
+        <h1 className="cart-page-title">Cart</h1>
         <section className="cart-list-wrapper">
           {items.map((item) => (
             <CartItemCard
