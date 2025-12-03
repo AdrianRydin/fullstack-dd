@@ -31,4 +31,18 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 299,
     image: "/src/assets/Sushi-plate4.png",
   },
+  {
+    id: "veggie-delight",
+    name: "Veggie Delight Roll",
+    description: "Cucumber, avocado, carrot, and asparagus",
+    price: 149,
+    image: "/src/assets/Sushi-plate5.png",
+  },
+  {
+    id: "tempura-shrimp",
+    name: "Tempura Shrimp Roll",
+    description: "Crispy shrimp tempura with avocado and spicy mayo",
+    price: 189,
+    image: "/src/assets/Sushi-plate6.png",
+  }
 ];
