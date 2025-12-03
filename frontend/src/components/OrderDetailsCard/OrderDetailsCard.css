@@ -1,0 +1,44 @@
+.order-details-card {
+  box-sizing: border-box;
+  display: flex;
+  /* justify-content: space-between; */
+  background-color: #f7f6f2;
+  color: black;
+  border-radius: 23px;
+  width: 100%;
+  min-height: 100px;
+  padding: 0 1rem;
+}
+
+.details-image {
+  width: 100px;
+  height: auto;
+  margin: 0.5rem;
+}
+
+.details-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 0.5rem;
+}
+
+.details-text-title {
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.details-text-desc,
+.details-text-qty {
+  font-size: 14px;
+}
+
+.details-total-price {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+h3,
+p {
+  margin: 0;
+}

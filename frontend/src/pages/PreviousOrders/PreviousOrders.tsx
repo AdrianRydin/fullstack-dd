@@ -14,6 +14,13 @@ export interface PreviousOrder {
   }[]
 }
 
+export interface OrderItem {
+  id: number
+  name: string
+  quantity: number
+  price: number
+}
+
 export const previousOrders: PreviousOrder[] = [
   {
     id: "ORD-102391",
@@ -22,7 +29,7 @@ export const previousOrders: PreviousOrder[] = [
     totalPrice: 249,
     items: [
       { id: 1, name: "California Roll", quantity: 1, price: 95 },
-      { id: 3, name: "Salmon Avocado Roll", quantity: 2, price: 77 },
+      { id: 3, name: "Sunrise Salmon Roll", quantity: 2, price: 77 },
     ],
   },
   {
@@ -42,7 +49,7 @@ export const previousOrders: PreviousOrder[] = [
     totalPrice: 189,
     items: [
       { id: 4, name: "Crispy Salmon Roll", quantity: 1, price: 99 },
-      { id: 1, name: "California Roll", quantity: 1, price: 95 },
+      { id: 1, name: "Umami Mix Platter", quantity: 1, price: 95 },
     ],
   },
 ]

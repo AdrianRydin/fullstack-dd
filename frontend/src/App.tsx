@@ -12,7 +12,8 @@ import MenuOverlay from "./components/MenuOverlay/MenuOverlay"
 import { useState } from "react"
 import Footer from "./features/layout/Footer/Footer"
 import Review from "./pages/Review/Review"
-import PreviousOrders from "./pages/PreviousOrders/PreviousOrders"
+import PreviousOrdersPage from "./pages/PreviousOrders/PreviousOrders"
+import OrderDetailsPage from "./pages/OrderDetails/OrderDetails"
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -24,7 +25,7 @@ function App() {
       />
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       <Routes>
-        <Route path="/" element={<PreviousOrders />} />
+        <Route path="/" element={<PreviousOrdersPage />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
@@ -32,6 +33,8 @@ function App() {
         <Route path="/receipt" element={<Receipt />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/previous-orders" element={<PreviousOrdersPage />} />
+        <Route path="/orders/:id" element={<OrderDetailsPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

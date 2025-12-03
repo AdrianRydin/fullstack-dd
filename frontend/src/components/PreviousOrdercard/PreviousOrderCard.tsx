@@ -2,6 +2,8 @@ import "./PreviousOrderCard.css"
 import { type PreviousOrder } from "../../pages/PreviousOrders/PreviousOrders"
 import Inventory2Icon from "@mui/icons-material/Inventory2"
 
+import { Link } from "react-router-dom"
+
 interface PreviousOrderCardProps {
   order: PreviousOrder
 }
@@ -19,7 +21,9 @@ function PreviousOrderCard({ order }: PreviousOrderCardProps) {
         <p>Total: {order.totalPrice} kr</p>
       </section>
       <section className="previous-order-info-button-wrapper">
-        <button className="previous-order-info-button">Info</button>
+        <Link to={`/orders/${order.id}`} className="previous-order-link">
+          <button className="previous-order-info-button">Info</button>
+        </Link>
       </section>
       <section className="previous-order-icon-wrapper"></section>
     </section>
