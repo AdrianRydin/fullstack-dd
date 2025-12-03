@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import "./FavoriteCard.css";
-import cartIcon from "../assets/add-to-cart 1.svg";
+import cartIcon from "../../assets/add-to-cart.png";
 
 export interface Dish {
   id: string;
@@ -20,10 +20,6 @@ const FavoriteCard: FC<FavoriteCardProps> = ({ favorites, popular }) => {
 
   return (
     <section className="favorites">
-      <div className="favorites__header">
-        <span className="favorites__header-line" />
-        <h2 className="favorites__title">Favorites</h2>
-      </div>
 
       <ul className="favorites__list">
         {listToShow.map((dish) => (
