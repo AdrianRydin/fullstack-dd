@@ -9,11 +9,13 @@ import { validateOrder } from "../../utils/validateOrder";
 import { useCheckoutStore } from "../../features/review/reviewStore";
 import { useCartStore } from "../../features/cart/cartStore";
 
-
 function Review() {
   const navigate = useNavigate();
-  const { items, clear } = useCartStore();
-  const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const { items } = useCartStore();
+  const totalPrice = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
   const { personalInfo, deliveryMethod, paymentMethod } = useCheckoutStore();
   const deliveryFee = deliveryMethod === "home" ? 49 : 0;
   const total = totalPrice + deliveryFee;
@@ -38,13 +40,12 @@ function Review() {
       total,
       orderNumber: Math.floor(Math.random() * 100000),
     };
-    clear();
     navigate("/receipt", { state: orderData });
   };
 
   return (
     <main className="review-page">
-      <h1 className="review-heading">Review your order</h1>
+      <h1 className="review-heading">Checkout</h1>
       <section className="review-container">
         <section className="review-list-wrapper">
           <h3 className="review-subheading">Order information</h3>
@@ -57,7 +58,11 @@ function Review() {
       </section>
       <AddressForm />
       <CheckoutMethodSelector />
-      <SummaryBox totalPrice={totalPrice} deliveryFee={deliveryFee} total={total} />
+      <SummaryBox
+        totalPrice={totalPrice}
+        deliveryFee={deliveryFee}
+        total={total}
+      />
       <Button text="Confirm" type="button" onClick={handleConfirm} />
     </main>
   );

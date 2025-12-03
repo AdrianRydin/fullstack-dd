@@ -25,6 +25,7 @@ interface CheckoutState {
   setDeliveryMethod: (value: string) => void;
   setPaymentMethod: (value: string) => void;
   setErrors: (errors: CheckoutErrors) => void;
+  resetCheckout: () => void;
 }
 
 export const useCheckoutStore = create<CheckoutState>((set) => ({
@@ -72,4 +73,12 @@ export const useCheckoutStore = create<CheckoutState>((set) => ({
   },
 
   setErrors: (errors) => set({ errors }),
+
+  resetCheckout: () =>
+    set({
+      personalInfo: { name: "", address: "", phone: "" },
+      deliveryMethod: "",
+      paymentMethod: "",
+      errors: {},
+    }),
 }));

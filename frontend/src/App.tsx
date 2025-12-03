@@ -12,11 +12,13 @@ import MenuOverlay from "./components/MenuOverlay/MenuOverlay";
 import { useState } from "react";
 import Footer from "./features/layout/Footer/Footer";
 import Review from "./pages/Review/Review";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <Header
         isMenuOpen={isMenuOpen}
         onToggleMenu={() => setIsMenuOpen((prev) => !prev)}
