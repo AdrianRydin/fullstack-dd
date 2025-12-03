@@ -25,7 +25,7 @@ function App() {
       />
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       <Routes>
-        <Route path="/" element={<PreviousOrdersPage />} />
+        <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
