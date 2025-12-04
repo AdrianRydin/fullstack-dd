@@ -111,14 +111,11 @@
     height: 2px;
   }
   .about-text {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     line-height: 1.4;
   }
   .welcome-heading {
     font-size: 2rem;
-  }
-  .about-text {
-    font-size: 1.1rem;
   }
 }
 @media (min-width: 1200px) {
