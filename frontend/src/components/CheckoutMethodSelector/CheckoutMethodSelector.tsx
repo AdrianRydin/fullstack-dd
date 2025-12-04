@@ -23,7 +23,7 @@ function CheckoutMethodSelector() {
               checked={deliveryMethod === method}
               onChange={(e) => setDeliveryMethod(e.target.value)}
             />
-            {method === "home" ? "Home Delivery" : "Pick up"}
+            {method === "home" ? "Delivery" : "Pick up"}
           </label>
         ))}
       </article>
