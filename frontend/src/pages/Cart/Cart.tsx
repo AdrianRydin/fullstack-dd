@@ -1,20 +1,20 @@
-import CartItemCard from "../../components/CartItemCard/CartItemCard";
-import Button from "../../components/Button/Button";
-import "./cart.css";
+import CartItemCard from "../../components/CartItemCard/CartItemCard"
+import Button from "../../components/Button/Button"
+import "./cart.css"
 
 import { useEffect } from "react"
 
 import { useCart } from "../../features/cart/useCart"
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 // data/sushiRolls.ts
 export interface SushiRoll {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
-  image: string;
+  id: number
+  name: string
+  description: string
+  price: number
+  quantity: number
+  image: string
 }
 
 // Fake data tills backend finns
@@ -59,10 +59,10 @@ const sushiRolls: SushiRoll[] = [
     quantity: 3,
     image: "/images/sushi/salmon-avocado.jpg",
   },
-];
+]
 
 export default function Cart() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const { items, increase, decrease, remove, totalPrice, setItems } = useCart()
 
   useEffect(() => {
@@ -72,6 +72,7 @@ export default function Cart() {
   return (
     <>
       <section className="cart-page-wrapper">
+        <h1 className="cart-page-title">Cart</h1>
         <section className="cart-list-wrapper">
           {items.map((item) => (
             <CartItemCard
@@ -99,8 +100,8 @@ export default function Cart() {
           </section>
         </section>
 
-        <Button text="Review Order" onClick={() => navigate("/review")}/>
+        <Button text="Checkout" onClick={() => navigate("/review")} />
       </section>
     </>
-  );
+  )
 }
