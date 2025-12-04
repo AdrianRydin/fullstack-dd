@@ -1,5 +1,4 @@
 import AboutSection from "../../components/AboutSection/AboutSection";
-// import Footer from "../../features/layout/Footer/Footer";
 import "./about.css";
 import ValueSection from "../../components/ValuesSection/ValueSection";
 import ContactSection from "../../components/ContactSection/ContactSection";
@@ -12,7 +11,6 @@ export default function About() {
       <AboutSection />
       <ValueSection />
       <ContactSection />
-      {/* <Footer showTextBamboo={false} /> */}
     </main>
   );
 }
