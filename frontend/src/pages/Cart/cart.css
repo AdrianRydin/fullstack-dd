@@ -27,6 +27,19 @@
   gap: 0.5rem;
 }
 
+.cart-page-title {
+  font-weight: 400;
+}
+
+.cart-page-title::after {
+  content: "";
+  display: block;
+  width: 12rem;
+  height: 1px;
+  background-color: #e87461;
+  margin: 0.5rem auto 0;
+}
+
 .cart-total-wrapper {
   display: flex;
   flex-direction: column;
@@ -40,7 +53,6 @@
   margin-bottom: 3rem;
   padding: 0.5rem 1rem;
   color: black;
-  font-family: "Lora";
 }
 
 .cart-price-grouping {
