@@ -11,38 +11,30 @@ function ValueSection() {
       <article className="value-container">
         <article className="values">
           <DeliveryDiningIcon
-            className="delivery-icon"
-            fontSize="medium"
+            className="value-icon"
             aria-hidden="true"
-            sx={{ color: "#E87461" }}
           />
           <p className="value-text">Fast Take Away</p>
         </article>
         <article className="values">
           <SetMealIcon
-            className="fish-icon"
-            fontSize="medium"
+            className="value-icon"
             aria-hidden="true"
-            sx={{ color: "#E87461" }}
           />
           <p className="value-text">Fresh Fish Daily</p>
         </article>
         <article className="values">
           <RiceBowlIcon
-            className="bowl-icon"
-            fontSize="medium"
+            className="value-icon"
             aria-hidden="true"
-            sx={{ color: "#E87461" }}
           />
           <p className="value-text">Quality Ingredients</p>
         </article>
         <article className="values">
           {" "}
           <LocalDiningIcon
-            className="craft-icon"
-            fontSize="medium"
+            className="value-icon"
             aria-hidden="true"
-            sx={{ color: "#E87461" }}
           />
           <p className="value-text">Modern Craftmanship</p>
         </article>
