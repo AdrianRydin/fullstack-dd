@@ -36,7 +36,7 @@ function ReceiptComponent({
         <p className="receipt-text">Delivery Fee: {deliveryFee} kr</p>
         <h2 className="receipt-total">Total: {totalPrice} kr</h2>
       </article>
-      <Button text="Follow my order" />
+      <Button text="My orders" onClick={() => navigate("/previous-orders")} />
       <Button text="Home" onClick={() => navigate("/")} />
     </section>
   );
