@@ -1,1 +1,25 @@
+.about-page {
+  min-height: 100vh;
+  position: relative;
+  color: var(--text-main);
+  isolation: isolate;
+}
 
+.about-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("/src/assets/sushi-background.jpg") center/cover no-repeat;
+  background-size: cover;
+  z-index: -2;
+}
+
+.about-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  z-index: -1;
+}

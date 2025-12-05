@@ -5,6 +5,7 @@
   align-items: center;
   text-align: center;
   margin-top: 3rem;
+  padding: 0 1rem;
 }
 .about-heading {
   font-size: 2rem;
@@ -15,17 +16,26 @@
 .about-heading::after {
   content: "";
   display: block;
-  width: 12rem; 
-  height: 1px;  
-  background-color: #E87461; 
-  margin: 0.5rem auto 0; 
+  width: 12rem;
+  height: 1px;
+  background-color: #e87461;
+  margin: 0.5rem auto 0;
+}
+.about-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }
 .about-img {
   width: 100%;
   max-width: 500px;
   height: auto;
   border-radius: 1rem;
-  margin-bottom: 1.5rem;
+}
+.about-img-desktop {
+  display: none;
 }
 .welcome-heading {
   font-size: 1.5rem;
@@ -34,7 +44,7 @@
   margin-bottom: 1rem;
 }
 .highlight {
-  color: #E87461; 
+  color: #e87461;
 }
 .about-text-container {
   max-width: 600px;
@@ -42,10 +52,86 @@
   padding: 0 1rem;
   text-align: center;
 }
-
 .about-text {
   font-size: 0.875rem;
   line-height: 1.4;
   margin-bottom: 1rem;
   padding: 0 0.5rem;
+}
+
+@media (min-width: 576px) {
+  .welcome-heading {
+    font-size: 1.7rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .about-heading {
+    font-size: 2.1rem;
+  }
+  .about-heading::after {
+    width: 12rem;
+    height: 2px;
+  }
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--glass-bg);
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: var(--glass-shadow);
+  }
+  .about-img-desktop {
+    display: block;
+  }
+  .welcome-heading {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-heading {
+    font-size: 2.5rem;
+  }
+  .about-heading::after {
+    width: 14rem;
+    height: 2px;
+  }
+  .about-text {
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+  .welcome-heading {
+    font-size: 2rem;
+  }
+}
+@media (min-width: 1200px) {
+  .about-heading {
+    font-size: 2.8rem;
+  }
+  .about-heading::after {
+    width: 15rem;
+    height: 2px;
+  }
+  .welcome-heading {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  .about-text {
+    font-size: 1.2rem;
+    margin-bottom: 1.7rem;
+  }
 }
