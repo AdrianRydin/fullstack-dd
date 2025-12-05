@@ -1,10 +1,14 @@
-import "./menu.css";
-import MenuCard from "../../components/MenuCard/MenuCard";
-import { MENU_ITEMS } from "../__tests__/index.ts";
-import LogoFull from "../../features/layout/Logo/LogoFull";
+import "./menu.css"
+import MenuCard from "../../components/MenuCard/MenuCard"
+import { MENU_ITEMS } from "../__tests__/index.ts"
+import LogoFull from "../../features/layout/Logo/LogoFull"
+import MenuFilter from "../../features/menu/MenuFilter.tsx"
+import { useMenuFilter } from "../../features/menu/useMenuFilter.ts"
 
 export default function Menu() {
-   return (
+  const { filter, setFilter, filteredMenu } = useMenuFilter(MENU_ITEMS)
+
+  return (
     <main className="menu-page">
       <LogoFull />
 
@@ -13,8 +17,10 @@ export default function Menu() {
         <h1 className="menu-title">Our Menu</h1>
       </section>
 
+      <MenuFilter filter={filter} setFilter={setFilter} />
+
       <div className="menu-list">
-        {MENU_ITEMS.map((item) => (
+        {filteredMenu.map((item) => (
           <MenuCard
             key={item.id}
             name={item.name}
@@ -26,5 +32,5 @@ export default function Menu() {
         ))}
       </div>
     </main>
-  );
+  )
 }
