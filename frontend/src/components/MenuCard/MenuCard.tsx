@@ -1,6 +1,7 @@
 import "./menucard.css";
 
 type MenuCardProps = {
+  id: number;
   name: string;
   description: string;
   price: number;

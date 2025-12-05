@@ -2,8 +2,8 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./headerlayout.css";
 import { Link } from "react-router-dom";
-
 import HeaderLayout from "./HeaderLayout";
+import { useCart } from "../../cart/useCart";
 
 export default function MenuHeader({
   isMenuOpen,
@@ -12,6 +12,9 @@ export default function MenuHeader({
   isMenuOpen: boolean;
   onToggleMenu: () => void;
 }) {
+  
+  const { totalQuantity } = useCart();
+
   return (
     <HeaderLayout>
       <section className="header-mobile">
@@ -24,8 +27,11 @@ export default function MenuHeader({
         </Link>
 
         <section className="menu-header-cart-container">
-          <Link to={"/cart"}>
+          <Link to={"/cart"} className="cart-icon-wrapper">
             <ShoppingCartIcon sx={{ fontSize: 30, color: "#dfd8c9" }} />
+            {totalQuantity > 0 && (
+              <span className="cart-badge">{totalQuantity}</span>
+            )}
           </Link>
           <aside
             className={`hamburger-menu-container ${isMenuOpen ? "open" : ""}`}
@@ -60,8 +66,11 @@ export default function MenuHeader({
           <Link to={"/cart"}>
             <h1>Cart</h1>
           </Link>
-          <Link to={"/cart"}>
+          <Link to={"/cart"} className="cart-icon-wrapper">
             <ShoppingCartIcon sx={{ fontSize: 30, color: "#dfd8c9" }} />
+            {totalQuantity > 0 && (
+              <span className="cart-badge">{totalQuantity}</span>
+            )}
           </Link>
         </nav>
       </section>
