@@ -33,7 +33,11 @@ function CheckoutMethodSelector() {
 
       <h3 className="select-subheading">Payment Method</h3>
       <article className="select-buttons">
-        {["swish", "card"].map((method) => (
+        {[
+          "swish",
+          "card",
+          ...(deliveryMethod === "pickup" ? ["cash"] : []),
+        ].map((method) => (
           <label className="select-container" key={method}>
             <input
               type="radio"
@@ -42,7 +46,11 @@ function CheckoutMethodSelector() {
               checked={paymentMethod === method}
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
-            {method === "swish" ? "Swish" : "Card"}
+            {method === "swish"
+              ? "Swish"
+              : method === "card"
+              ? "Card"
+              : "Pay on pickup"}
           </label>
         ))}
       </article>
