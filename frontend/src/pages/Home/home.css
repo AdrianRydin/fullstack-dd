@@ -7,7 +7,7 @@
 
 .home-page::before {
   content: "";
-  position:fixed;
+  position: fixed;
   inset: 0;
   background: url("/src/assets/sushi-background.jpg") center/cover no-repeat;
   background-size: 160% auto;
@@ -28,6 +28,7 @@
 .hero-text {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.6rem;
 }
 
@@ -59,7 +60,7 @@
 }
 
 .home-section {
- display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -68,7 +69,7 @@
 }
 
 .section-heading {
- font-size: 2rem;
+  font-size: 2rem;
   font-weight: 500;
   position: relative;
   margin-bottom: 2rem;
@@ -77,10 +78,10 @@
 .section-heading::after {
   content: "";
   display: block;
-  width: 12rem; 
-  height: 1px;  
-  background-color: #E87461; 
-  margin: 0.5rem auto 0; 
+  width: 12rem;
+  height: 1px;
+  background-color: #e87461;
+  margin: 0.5rem auto 0;
 }
 
 .favorites-list {
@@ -88,7 +89,6 @@
   flex-direction: column;
   gap: 0.7rem;
 }
-
 
 .home-about-preview .section-heading {
   margin-bottom: 0.4rem;
@@ -122,12 +122,15 @@
   color: var(--text-muted);
 }
 
-
 .menu-grid-preview {
   display: grid;
   gap: 1rem;
 }
 
+.view-menu-button {
+  width: auto;
+  cursor: pointer;
+}
 .view-all-wrap {
   margin-top: 0.9rem;
   display: flex;
@@ -151,10 +154,10 @@
 .about-heading::after {
   content: "";
   display: block;
-  width: 12rem; 
-  height: 1px;  
-  background-color: #E87461; 
-  margin: 0.5rem auto 0; 
+  width: 12rem;
+  height: 1px;
+  background-color: #e87461;
+  margin: 0.5rem auto 0;
 }
 .about-img {
   width: 100%;
