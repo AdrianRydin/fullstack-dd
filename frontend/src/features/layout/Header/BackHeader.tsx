@@ -2,6 +2,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
 import HeaderLayout from "./HeaderLayout";
 import "./backheader.css";
+import { useNavigate } from "react-router-dom";
 
 export default function BackHeader({
   isMenuOpen,
@@ -10,17 +11,21 @@ export default function BackHeader({
   isMenuOpen: boolean;
   onToggleMenu: () => void;
 }) {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
   return (
     <HeaderLayout>
       {/* MOBILE */}
       <section className="header-mobile">
-        <Link to={"/menu"}>
-          <ArrowBackIcon
-            className="back-arrow"
-            fontSize="large"
-            sx={{ fontSize: 40, color: "#dfd8c9" }}
-          />
-        </Link>
+        <ArrowBackIcon
+          className="back-arrow"
+          fontSize="large"
+          sx={{ fontSize: 40, color: "#dfd8c9" }}
+          onClick={goBack}
+        />
+
         <aside
           className={`hamburger-menu-container ${isMenuOpen ? "open" : ""}`}
           onClick={onToggleMenu}
@@ -33,13 +38,13 @@ export default function BackHeader({
 
       {/* DESKTOP */}
       <section className="header-desktop">
-        <Link to={"/menu"}>
-          <ArrowBackIcon
-            className="back-arrow"
-            fontSize="large"
-            sx={{ fontSize: 40, color: "#dfd8c9" }}
-          />
-        </Link>
+        <ArrowBackIcon
+          className="back-arrow"
+          fontSize="large"
+          sx={{ fontSize: 40, color: "#dfd8c9" }}
+          onClick={goBack}
+        />
+
         <nav className="header-desktop-link-container">
           <Link to={"/menu"}>
             <h1>Menu</h1>
