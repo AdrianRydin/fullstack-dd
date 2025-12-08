@@ -9,9 +9,12 @@ function AdminDashboardPage() {
     <section className="wrapper">
       <h1 className="title">Dashboard</h1>
       <section className="button-wrapper">
-        <Button text={"Menu"} />
-        <Button text={"Orders"} />
-        <Button text={"Inventory"} onClick={() => navigate("/inventory")} />
+        <Button text={"Menu"} onClick={() => navigate("/admin-menu")} />
+        <Button text={"Orders"} onClick={() => navigate("/admin-orders")} />
+        <Button
+          text={"Inventory"}
+          onClick={() => navigate("/admin-inventory")}
+        />
       </section>
     </section>
   )
