@@ -52,6 +52,16 @@ export const useCheckoutStore = create<CheckoutState>((set) => ({
 
   setDeliveryMethod: (value) => {
     set((state) => {
+      let newPaymentMethod = state.paymentMethod;
+      if (
+        value === "pickup" &&
+        !["swish", "card", "cash"].includes(newPaymentMethod)
+      ) {
+        newPaymentMethod = "cash";
+      }
+      if (value === "home" && newPaymentMethod === "cash") {
+        newPaymentMethod = "swish"; 
+      }
       const validation = validateOrder({
         personalInfo: state.personalInfo,
         deliveryMethod: value,

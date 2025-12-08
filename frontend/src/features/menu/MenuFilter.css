@@ -1,0 +1,24 @@
+.filter-buttons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  gap: clamp(0.7rem, 2vw, 1.5rem);
+}
+
+.filter-buttons-wrapper button {
+  padding: clamp(6px, 2vw, 12px) clamp(12px, 3vw, 24px);
+  border: none;
+  border-radius: 999px;
+  background-color: #e87461;
+  color: var(--text-main);
+  cursor: pointer;
+  font-size: clamp(14px, 4vw, 18px);
+  font-family: "Lora", sans-serif;
+  transition: background-color 0.2s ease;
+}
+
+.filter-buttons-wrapper button.active {
+  background-color: #cc5e4f;
+  font-weight: bold;
+}
