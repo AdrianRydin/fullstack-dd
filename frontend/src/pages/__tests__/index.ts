@@ -1,5 +1,5 @@
 export type MenuItem = {
-  id: string
+  id: number
   name: string
   type: "nigiri" | "maki" | "special" | "drink"
   description: string
@@ -10,7 +10,7 @@ export type MenuItem = {
 
 export const MENU_ITEMS: MenuItem[] = [
   {
-    id: "sunrise-salmon",
+    id: 1,
     name: "Sunrise Salmon Roll",
     type: "special",
     description: "Salmon, rice, lax, räka",
@@ -19,7 +19,7 @@ export const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
   },
   {
-    id: "spicy-tuna",
+    id: 2,
     name: "Spicy Tuna Roll",
     type: "special",
     description: "Sushi rice, nori, fresh tuna, spicy mayo",
@@ -28,7 +28,7 @@ export const MENU_ITEMS: MenuItem[] = [
     isFavorite: true,
   },
   {
-    id: "umami-mix",
+    id: 3,
     name: "Umami Mix Platter",
     type: "special",
     description: "A mix of our signature rolls",
@@ -36,7 +36,7 @@ export const MENU_ITEMS: MenuItem[] = [
     image: "/src/assets/Sushi-plate4.png",
   },
   {
-    id: "veggie-delight",
+    id: 4,
     name: "Veggie Delight Roll",
     type: "nigiri",
     description: "Cucumber, avocado, carrot, and asparagus",
@@ -44,7 +44,7 @@ export const MENU_ITEMS: MenuItem[] = [
     image: "/src/assets/Sushi-plate5.png",
   },
   {
-    id: "tempura-shrimp",
+    id: 5,
     name: "Tempura Shrimp Roll",
     type: "nigiri",
     description: "Crispy shrimp tempura with avocado and spicy mayo",
