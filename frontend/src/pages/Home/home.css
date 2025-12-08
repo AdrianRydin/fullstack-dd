@@ -19,7 +19,7 @@
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(43, 43, 44, 0.65);
+  background: rgba(37, 37, 41, 0.65);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   z-index: -1;
@@ -93,38 +93,6 @@
   flex-direction: column;
   gap: 0.7rem;
 }
-/* 
-.home-about-preview .section-heading {
-  margin-bottom: 0.4rem;
-}
-
-.about-preview-card {
-  background: radial-gradient(circle at top, #2c2625, #1b1819);
-  border-radius: 24px;
-  padding: 0.6rem;
-  display: grid;
-  grid-template-columns: 1.1fr 1.5fr;
-  gap: 0.6rem;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-}
-
-.about-preview-image {
-  width: 100%;
-  height: 100%;
-  border-radius: 18px;
-  object-fit: cover;
-}
-
-.about-preview-text h3 {
-  margin: 0 0 0.3rem;
-  font-size: 0.95rem;
-}
-
-.about-preview-text p {
-  margin: 0;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-} */
 
 .menu-grid-preview {
   display: flex;
@@ -180,13 +148,13 @@
 .about-card {
   max-width: 600px;
   width: 100%;
-  margin-top: 1.5rem;
+  margin: 1.5rem auto;
   background: radial-gradient(circle at top, #3c2623, #1d1514);
   border-radius: 24px;
   padding: 1.5rem 1.75rem;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.16);
-  text-align: left;
+  text-align: center;
 }
 
 .about-card-heading {
@@ -203,6 +171,15 @@
   font-size: 0.875rem;
   line-height: 1.5;
   margin: 0;
+}
+
+.about-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  gap: 1rem;
 }
 
 @media (min-width: 1024px) {
@@ -279,11 +256,8 @@
     font-size: 2rem;
   }
   .about-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
     gap: 2.5rem;
-    margin-inline: auto;
   }
   .about-image {
     height: 18rem;
@@ -316,7 +290,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10rem;
+    gap: 3rem;
     z-index: 2;
   }
   .desktop-text {
@@ -348,10 +322,17 @@
     font-size: 2.5rem;
   }
   .about-image {
-    height: 25rem;
+    height: 22rem;
   }
   .about-card {
     padding: 4rem;
+  }
+  .about-row {
+    justify-content: center;
+    gap: 3rem; 
+    width: 100%;
+    max-width: 1100px; 
+    margin-inline: auto;
   }
   .about-card-heading {
     font-size: 2rem;
@@ -361,5 +342,8 @@
   }
   .menu-grid-preview {
     gap: 4rem;
+  }
+  .view-all-wrap {
+    margin-bottom: 7rem;
   }
 }
