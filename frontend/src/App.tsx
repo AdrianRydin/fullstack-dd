@@ -28,7 +28,7 @@ function App() {
       />
       <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       <Routes>
-        <Route path="/" element={<AdminDashboardPage />} />
+        <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
@@ -38,6 +38,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/previous-orders" element={<PreviousOrdersPage />} />
         <Route path="/orders/:id" element={<OrderDetailsPage />} />
+        <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
