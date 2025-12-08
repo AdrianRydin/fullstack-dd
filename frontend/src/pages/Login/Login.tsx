@@ -18,40 +18,44 @@ export default function Login() {
   return (
     <>
       {/* <Header /> */}
-      <section className="auth-container">
-        <img src={topLeftImg} alt="Top Left" className="top-left-img" />
-        <h1>Login</h1>
-        <div className="form-group">
-          <label>*Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-          />
-        </div>
+      <section className="page-container">
+        <img
+          src={topLeftImg}
+          alt="Top Left"
+          className="bamboo-images top-left-img"
+        />
+        <section className="auth-container">
+          <h1>Login</h1>
+          <div className="form-group">
+            <label>*Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+            />
+          </div>
 
-        <div className="form-group">
-          <label>*Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-          />
-        </div>
+          <div className="form-group">
+            <label>*Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+            />
+          </div>
 
-        {error && <p className="error">{error}</p>}
+          {error && <p className="error">{error}</p>}
 
-        <button className="auth-btn" onClick={handleLogin}>
-          Login
-        </button>
-      </section>
-      <section className="bottom-img-container">
+          <button className="auth-btn" onClick={handleLogin}>
+            Login
+          </button>
+        </section>
         <img
           src={bottomRightImg}
           alt="Bottom Right"
-          className="bottom-right-img"
+          className="bamboo-images bottom-right-img"
         />
       </section>
     </>

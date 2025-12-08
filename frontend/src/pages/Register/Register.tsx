@@ -27,66 +27,71 @@ export default function Register() {
   return (
     <>
       {/* <Header /> */}
-      <section className="auth-container">
-        <img src={topLeftImg} alt="Top Left" className="top-left-img" />
-        <h1>Register</h1>
-        <section className="form-group__container">
-          <div className="form-group">
-            <label>*Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-            />
-          </div>
+      <section className="page-container">
+        <img
+          src={topLeftImg}
+          alt="Top Left"
+          className="bamboo-images top-left-img"
+        />
+        <section className="auth-container">
+          <h1>Register</h1>
+          <section className="form-group__container">
+            <div className="form-group">
+              <label>*Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+              />
+            </div>
 
-          <div className="form-group">
-            <label>*Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-            />
-          </div>
+            <div className="form-group">
+              <label>*Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+              />
+            </div>
 
-          <div className="form-group">
-            <label>*Repeat Password</label>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm your password"
-            />
-          </div>
+            <div className="form-group">
+              <label>*Repeat Password</label>
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm your password"
+              />
+            </div>
 
-          {error && <p className="error">{error}</p>}
+            {error && <p className="error">{error}</p>}
 
-          <section className="btn-container">
-            <button className="auth-btn" onClick={handleRegister}>
-              Register
-            </button>
+            <section className="btn-container">
+              <button className="auth-btn" onClick={handleRegister}>
+                Register
+              </button>
+            </section>
+
+            <p className="register-text">
+              Already a member?
+              <span
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/login")}
+              >
+                Login here
+              </span>
+            </p>
+
+            <span className="bottom-line"></span>
           </section>
-
-          <p className="register-text">
-            Already a member?
-            <span
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/login")}
-            >
-              Login here
-            </span>
-          </p>
-
-          <span className="bottom-line"></span>
         </section>
-      </section>
-      <section className="bottom-img-container">
+
         <img
           src={bottomRightImg}
           alt="Bottom Right"
-          className="bottom-right-img"
+          className="bamboo-images bottom-right-img"
         />
       </section>
     </>
