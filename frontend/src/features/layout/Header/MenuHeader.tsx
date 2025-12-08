@@ -2,6 +2,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./headerlayout.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import HeaderLayout from "./HeaderLayout";
 import { useCart } from "../../cart/useCart";
 
@@ -12,19 +13,20 @@ export default function MenuHeader({
   isMenuOpen: boolean;
   onToggleMenu: () => void;
 }) {
-  
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
   const { totalQuantity } = useCart();
-
   return (
     <HeaderLayout>
       <section className="header-mobile">
-        <Link to={"/"}>
-          <ArrowBackIcon
-            className="back-arrow"
-            fontSize="large"
-            sx={{ fontSize: 40, color: "#dfd8c9" }}
-          />
-        </Link>
+        <ArrowBackIcon
+          className="back-arrow"
+          fontSize="large"
+          sx={{ fontSize: 40, color: "#dfd8c9" }}
+          onClick={goBack}
+        />
 
         <section className="menu-header-cart-container">
           <Link to={"/cart"} className="cart-icon-wrapper">
@@ -45,13 +47,12 @@ export default function MenuHeader({
       </section>
 
       <section className="header-desktop">
-        <Link to={"/"}>
-          <ArrowBackIcon
-            className="back-arrow"
-            fontSize="large"
-            sx={{ fontSize: 40, color: "#dfd8c9" }}
-          />
-        </Link>
+        <ArrowBackIcon
+          className="back-arrow"
+          fontSize="large"
+          sx={{ fontSize: 40, color: "#dfd8c9" }}
+          onClick={goBack}
+        />
 
         <nav className="header-desktop-link-container">
           <Link to={"/menu"}>
