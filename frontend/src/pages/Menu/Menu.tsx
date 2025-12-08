@@ -2,8 +2,11 @@ import "./menu.css";
 import MenuCard from "../../components/MenuCard/MenuCard";
 import { MENU_ITEMS } from "../__tests__/index.ts";
 import LogoFull from "../../features/layout/Logo/LogoFull";
+import { useCart } from "../../features/cart/useCart.ts";
 
 export default function Menu() {
+  const { addToCart } = useCart();
+
    return (
     <main className="menu-page">
       <LogoFull />
@@ -17,11 +20,21 @@ export default function Menu() {
         {MENU_ITEMS.map((item) => (
           <MenuCard
             key={item.id}
+            id={item.id}
             name={item.name}
             description={item.description}
             price={item.price}
             image={item.image}
-            onAddToCart={() => console.log("Added")}
+            onAddToCart={() =>
+              addToCart({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                image: item.image,
+                quantity: 1,
+                description: item.description,
+              })
+            }
           />
         ))}
       </div>
