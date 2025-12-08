@@ -1,59 +1,68 @@
-/* Gemensam CSS för både Register och Login */
-.auth-container {
+.page-container {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  background-color: #d9d9d9;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  margin-top: 50px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 20px 0px;
+  max-width: 750px;
+  margin: auto;
+  padding: 20px 0;
   text-align: center;
   font-family: "Lora", serif;
   color: #ffffff;
 }
 
+/* Rubrik */
+.auth-container h1 {
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  margin-bottom: 10px;
+  position: relative;
+  margin-top: 50px;
+}
+
+/* --------- FORM GROUP --------- */
 .form-group {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   margin-bottom: 15px;
-  /* text-align: left; */
-}
-
-.form-group label {
-  /* display: block; */
-  margin-bottom: 5px;
-  font-weight: bold;
+  width: 100%;
 }
 
 label {
+  width: 80%;
   text-align: left;
-  width: 70%;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
 }
 
 .form-group input {
-  box-sizing: border-box;
-  width: 70%;
-  padding: 12px 16px;
+  width: 80%;
+  padding: clamp(10px, 2vw, 14px) clamp(14px, 2vw, 20px);
   border-radius: 999px;
   border: 1px solid #ccc;
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  box-sizing: border-box;
 }
 
-/* .btn-container {
-  margin: auto;
-} */
-
+/* -------- BUTTON --------- */
 .auth-btn {
-  width: 50%;
-  padding: 10px;
-  color: #ffffff;
+  width: 60%;
+  padding: clamp(10px, 2vw, 14px);
+  color: #fff;
   background-color: #e87461;
   border: none;
   border-radius: 999px;
   cursor: pointer;
   font-family: "Lora", serif;
   font-weight: bold;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin: auto;
 }
 
 .auth-btn:hover {
@@ -63,56 +72,44 @@ label {
 .error {
   color: red;
   margin-bottom: 10px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
-/* Text under knappen för Register-vyn */
+/* Register-text */
 .register-text {
+  display: flex;
+  flex-direction: column;
   margin-top: 10px;
-  color: #ffffff;
+  color: #fff;
   font-weight: bold;
-  font-size: 23px;
-  margin-bottom: 0px;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  margin-bottom: 0;
 }
 
 .register-text span {
-  color: #ffffff;
-  font-size: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  font-size: clamp(0.85rem, 2vw, 1rem);
   cursor: pointer;
+  margin-top: 2px;
 }
 
-/* Övre bild */
-.top-left-img {
+.bamboo-images {
   position: absolute;
-  top: 10px;
-  left: -22px;
-  /* z-index: -1;  */
-  width: 100px;
-  height: 100px;
+  width: auto;
+  height: 9.4rem;
+  z-index: 1;
+  pointer-events: none;
 }
 
-.bottom-img-container {
-  width: 100%;
-  display: flex;
-  justify-content: end;
-  margin: 0 auto;
-  background-color: #d9d9d9;
-  overflow: visible;
+.top-left-img {
+  top: 0;
+  left: 0;
+  transform: translate(-45%, 0%);
 }
+
 .bottom-right-img {
-  width: 100px;
-  height: 100px;
-  margin-right: -22px;
-}
-
-.form-group__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  bottom: 0;
+  right: 0;
+  transform: translate(45%, 50%);
 }
 
 .bottom-line {
@@ -122,4 +119,96 @@ label {
   margin: 16px auto 0;
   background-color: #ffffff;
   border-radius: 2px;
+}
+
+@media (min-width: 600px) {
+  .auth-btn {
+    width: 50%;
+  }
+
+  .form-group input,
+  label {
+    width: 70%;
+  }
+}
+
+@media (min-width: 900px) {
+  .auth-container {
+    padding: 30px 0;
+  }
+
+  .auth-btn {
+    width: 40%;
+  }
+
+  .form-group input,
+  label {
+    width: 60%;
+  }
+}
+
+@media (min-width: 576px) {
+  .bamboo-images {
+    height: 11rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .top-left-img {
+    top: 0;
+    left: 0;
+    transform: translate(-40%, 0%);
+  }
+}
+
+@media (min-width: 576px) {
+  .bottom-right-img {
+    bottom: 0;
+    right: 0;
+    transform: translate(40%, 50%);
+  }
+}
+
+@media (min-width: 768px) {
+  .bamboo-images {
+    height: 12rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .top-left-img {
+    top: 0;
+    left: 0;
+    transform: translate(-40%, 0%);
+  }
+}
+
+@media (min-width: 768px) {
+  .bottom-right-img {
+    bottom: 0;
+    right: 0;
+    transform: translate(38%, 50%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .bamboo-images {
+    height: 15rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .top-left-img {
+    top: 0;
+    left: 0;
+    transform: translate(-35%, 0%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .bottom-right-img {
+    bottom: 0;
+    right: 0;
+    transform: translate(35%, 50%);
+  }
 }
