@@ -1,18 +1,36 @@
 import "./home.css";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LogoFull from "../../features/layout/Logo/LogoFull";
 import logo from "../../assets/logo-full-transparent.png";
 import bamboo1 from "../../assets/bambo1.png";
 import bamboo2 from "../../assets/bambo2.png";
-import { MENU_ITEMS } from "../__tests__/index.ts";
-import Button from "../../components/Button/Button.tsx";
-import MenuCard from "../../components/MenuCard/MenuCard.tsx";
-import FavoriteCard from "../../components/FavoriteCard/FavoriteCard.tsx";
+import Button from "../../components/Button/Button";
+import MenuCard from "../../components/MenuCard/MenuCard";
+import FavoriteCard from "../../components/FavoriteCard/FavoriteCard";
+import { getMenu } from "../../api/menu";
+import type { MenuItem } from "../../api/menu";
 
 export default function Home() {
-  const previewMenu = MENU_ITEMS.slice(0, 3);
-  const favorites = MENU_ITEMS.slice(0, 3);
-  const popular = MENU_ITEMS.slice(3, 6);
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+
+  useEffect(() => {
+    getMenu()
+      .then((items) => {
+        setMenuItems(items);
+      })
+      .catch((err) => {
+        console.error("Failed to load menu on Home:", err);
+      });
+  }, []);
+
+
+  const previewMenu = menuItems.slice(0, 3);
+  // Om vi vill använda tags:
+  // const favoritesItems = menuItems.filter((i) => i.tags?.includes("favorite"));
+  // const popularItems = menuItems.filter((i) => i.tags?.includes("popular"));
+  const favoritesItems = menuItems.slice(0, 3);
+  const popularItems = menuItems.slice(3, 6);
 
   return (
     <main className="home-page">
@@ -64,26 +82,28 @@ export default function Home() {
         />
       </div>
 
+      {/* Favorites / Popular */}
       <section className="home-section">
         <h2 className="section-heading">Favorites</h2>
         <div className="favorites-list">
           <FavoriteCard
-            favorites={favorites.map((item) => ({
-              id: item.id,
+            favorites={favoritesItems.map((item) => ({
+              id: item._id,
               name: item.name,
               price: item.price,
-              imageUrl: item.image,
+              imageUrl: item.imageUrl ?? "",
             }))}
-            popular={popular.map((item) => ({
-              id: item.id,
+            popular={popularItems.map((item) => ({
+              id: item._id,
               name: item.name,
               price: item.price,
-              imageUrl: item.image,
+              imageUrl: item.imageUrl ?? "",
             }))}
           />
         </div>
       </section>
 
+      {/* About us */}
       <section className="about-sect">
         <h2 className="about-section-heading">About us</h2>
         <div className="about-row">
@@ -99,28 +119,29 @@ export default function Home() {
             </h2>
 
             <p className="about-card-text">
-              Our inspiration comes from the heart of Japanese culinary culture:
-              respect for ingredients, balance in taste, and a dedication to
-              detail. Whether you join us for a quick lunch, a cozy dinner, or a
-              celebration with friends, we aim to create moments that are
-              memorable and comforting.
+              Our inspiration comes from the heart of Japanese culinary
+              culture: respect for ingredients, balance in taste, and a
+              dedication to detail. Whether you join us for a quick lunch, a
+              cozy dinner, or a celebration with friends, we aim to create
+              moments that are memorable and comforting.
             </p>
           </article>
         </div>
       </section>
 
+      {/* Menu preview */}
       <section className="home-content">
         <section className="home-section">
           <h2 className="section-heading">Our Menu</h2>
           <div className="menu-grid-preview">
             {previewMenu.map((item) => (
               <MenuCard
-                key={item.id}
-                id={item.id}
+                key={item._id}
+                id={item._id}
                 name={item.name}
                 description={item.description}
                 price={item.price}
-                image={item.image}
+                image={item.imageUrl ?? ""}
                 onAddToCart={() => console.log("Added")}
               />
             ))}
