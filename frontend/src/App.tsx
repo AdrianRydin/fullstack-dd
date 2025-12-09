@@ -1,4 +1,3 @@
-
 import "./App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home/Home"
@@ -13,16 +12,16 @@ import MenuOverlay from "./components/MenuOverlay/MenuOverlay"
 import { useState } from "react"
 import Footer from "./features/layout/Footer/Footer"
 import Review from "./pages/Review/Review"
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
 import PreviousOrdersPage from "./pages/PreviousOrders/PreviousOrders"
 import OrderDetailsPage from "./pages/OrderDetails/OrderDetails"
-
+import AdminDashboardPage from "./pages/AdminDashboard/AdminDashboard"
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   return (
     <BrowserRouter>
-    <ScrollToTop />
+      <ScrollToTop />
       <Header
         isMenuOpen={isMenuOpen}
         onToggleMenu={() => setIsMenuOpen((prev) => !prev)}
@@ -39,6 +38,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/previous-orders" element={<PreviousOrdersPage />} />
         <Route path="/orders/:id" element={<OrderDetailsPage />} />
+        <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
