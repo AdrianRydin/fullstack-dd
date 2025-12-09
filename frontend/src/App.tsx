@@ -16,6 +16,8 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
 import PreviousOrdersPage from "./pages/PreviousOrders/PreviousOrders"
 import OrderDetailsPage from "./pages/OrderDetails/OrderDetails"
 import AdminInventoryPage from "./pages/AdminInventory/AdminInventory"
+import AdminDashboardPage from "./pages/AdminDashboard/AdminDashboard"
+
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -39,6 +41,7 @@ function App() {
         <Route path="/previous-orders" element={<PreviousOrdersPage />} />
         <Route path="/orders/:id" element={<OrderDetailsPage />} />
         <Route path="/admin-inventory" element={<AdminInventoryPage />} />
+        <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
