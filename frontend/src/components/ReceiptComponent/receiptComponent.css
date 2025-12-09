@@ -48,3 +48,39 @@
   font-size: 1rem;
   font-weight: bold;
 }
+.receipt-component button {
+  font-size: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .receipt-component {
+    padding: 3rem 2.5rem;
+    gap: 1.5rem;
+  }
+  .receipt-logo {
+    width: 15rem;
+    margin-bottom: 1rem;
+  }
+  .receipt-heading {
+    font-size: 1.8rem;
+  }
+  .receipt-ordernumber,
+  .receipt-date {
+    font-size: 1.2rem;
+  }
+  .receipt-subheading {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .receipt-text {
+    font-size: 1.1rem;
+  }
+  .receipt-total {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .receipt-component button {
+    font-size: 1.7rem;
+  }
+}

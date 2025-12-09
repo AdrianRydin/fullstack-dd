@@ -1,5 +1,14 @@
 import { Schema, model, InferSchemaType } from "mongoose";
 
+export interface IMenuItem extends Document {
+  name: string;
+  description?: string;
+  price: number;
+  category?: string;
+  imageUrl?: string;
+  isAvailable: boolean;
+}
+
 const menuItemSchema = new Schema(
   {
     name: {

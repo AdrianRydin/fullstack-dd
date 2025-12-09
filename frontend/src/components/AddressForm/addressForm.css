@@ -39,3 +39,23 @@
   font-size: .8rem;
   letter-spacing: .3px;
 }
+
+@media (min-width: 1024px) {
+  .personal-info-section {
+    padding: 3rem;
+  }
+
+  .personal-info-title {
+    font-size: 1.5rem;
+  }
+
+  .input-group input {
+    font-size: 1.1rem;
+    padding: 14px 18px;
+  }
+
+  .input-group input::placeholder {
+    font-size: 1rem;
+  }
+}
+

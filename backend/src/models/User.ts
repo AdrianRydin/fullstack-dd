@@ -1,4 +1,15 @@
 import { Schema, model, InferSchemaType } from "mongoose";
+import type { UserRole } from "../utils/Jwt";
+
+export interface IUser extends Document {
+  name?: string;
+  email: string;
+  passwordHash: string;
+  phone?: string;
+  role: UserRole;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 const userSchema = new Schema(
   {
@@ -24,8 +35,8 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["customer", "admin"],
-      default: "customer",
+      enum: ["CUSTOMER", "STAFF", "ADMIN"],
+      default: "CUSTOMER",  
     },
   },
   { timestamps: true }
