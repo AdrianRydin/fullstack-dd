@@ -41,10 +41,11 @@
 }
 @media (min-width: 1024px) {
   .menu-list {
-    grid-template-columns: repeat(3, 1fr);
-    margin: 6rem 0 4rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin: 6rem auto 4rem auto;
   }
 }
+
 
 
 
