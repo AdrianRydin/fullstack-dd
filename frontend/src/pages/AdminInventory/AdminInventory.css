@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.row-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.item-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.title {
+  font-weight: 400;
+}
+
+.item-wrapper,
+.qty-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.5rem;
+}
+
+.qty-wrapper {
+  text-align: center;
+}
