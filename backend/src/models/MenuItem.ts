@@ -1,12 +1,14 @@
-import { Schema, model, InferSchemaType } from "mongoose";
+import { Schema, model, InferSchemaType } from "mongoose"
 
 export interface IMenuItem extends Document {
-  name: string;
-  description?: string;
-  price: number;
-  category?: string;
-  imageUrl?: string;
-  isAvailable: boolean;
+  name: string
+  description?: string
+  price: number
+  category?: string
+  imageUrl?: string
+  isAvailable: boolean
+  tags?: string[]
+  ingredients?: string[]
 }
 
 const menuItemSchema = new Schema(
@@ -41,12 +43,18 @@ const menuItemSchema = new Schema(
         type: String,
       },
     ],
+    ingredients: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
   },
   { timestamps: true }
-);
+)
 
-export type MenuItem = InferSchemaType<typeof menuItemSchema>;
+export type MenuItem = InferSchemaType<typeof menuItemSchema>
 
-const MenuItemModel = model<MenuItem>("MenuItem", menuItemSchema);
+const MenuItemModel = model<MenuItem>("MenuItem", menuItemSchema)
 
-export default MenuItemModel;
+export default MenuItemModel

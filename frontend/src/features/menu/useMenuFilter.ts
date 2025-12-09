@@ -6,7 +6,7 @@ export function useMenuFilter(items: MenuItem[]) {
   const [filter, setFilter] = useState<string>("all")
 
   const filteredMenu = useMemo(() => {
-    if (filter === "all") return items
+    if (!filter || filter === "all") return items
 
     return items.filter((item) => {
       const category = item.category?.toLowerCase() ?? ""
