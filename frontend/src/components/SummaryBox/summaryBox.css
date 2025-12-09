@@ -23,3 +23,21 @@
   padding-top: 0.5rem;
   color: #f57a6a;
 }
+
+@media (min-width: 1024px) {
+  .summary-box {
+    padding: 2rem 2.5rem;
+  }
+
+  .summary-heading {
+    font-size: 1.5rem;
+  }
+
+  .summary-line {
+    font-size: 1.1rem;
+  }
+
+  .summary-line.total {
+    font-size: 1.3rem;
+  }
+}

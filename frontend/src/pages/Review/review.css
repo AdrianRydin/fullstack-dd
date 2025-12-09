@@ -5,7 +5,15 @@
   font-size: 2rem;
   font-weight: 400;
   color: #f5f0e6;
-  margin-top: 3rem;
+  margin-top: 5rem;
+}
+.review-heading::after {
+  content: "";
+  display: block;
+  width: 12rem;
+  height: 1px;
+  background-color: #e87461;
+  margin: 0.5rem auto 0;
 }
 .review-subheading {
   margin: 2.5rem 0 1.5rem 0;
@@ -39,3 +47,14 @@
   margin-top: 0.25rem;
 }
 
+@media (min-width: 1024px) {
+  .review-heading {
+    margin-top: 7rem;
+  }
+  .review-list-wrapper {
+    width: 50vw;
+  }
+  .review-subheading {
+    font-size: 1.7rem;
+  }
+}
