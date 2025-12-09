@@ -3,7 +3,7 @@ import "./FavoriteCard.css";
 import cartIcon from "../../assets/add-to-cart.png";
 
 export interface Dish {
-  id: number;
+  id: string;
   name: string;
   price: number;
   imageUrl?: string;
