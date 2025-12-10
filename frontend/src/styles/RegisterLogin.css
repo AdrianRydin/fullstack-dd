@@ -90,6 +90,7 @@ label {
   font-size: clamp(0.85rem, 2vw, 1rem);
   cursor: pointer;
   margin-top: 2px;
+  color: var(--accent);
 }
 
 .bamboo-images {
