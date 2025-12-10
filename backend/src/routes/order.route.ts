@@ -1,44 +1,45 @@
 // src/routes/orders.routes.ts
-import { Router, Response, NextFunction } from "express";
-import Order, { IOrder } from "../models/Order";
-import MenuItem from "../models/MenuItem";
-import { authApiKey } from "../middlewares/authApiKey";
+import { Router, Response, NextFunction } from "express"
+import Order, { IOrder } from "../models/Order"
+import MenuItem from "../models/MenuItem"
+import { authApiKey } from "../middlewares/authApiKey"
 import {
   authJwt,
   optionalAuthJwt,
   requireRole,
   AuthRequest,
-} from "../middlewares/authJwt";
+} from "../middlewares/authJwt"
+import { deductInventory } from "../services/inventoryDeduction"
 
-const router = Router();
-router.use(authApiKey);
+const router = Router()
+router.use(authApiKey)
 
 /*Skapa order för gäst eller inloggad kund */
 router.post(
   "/",
   optionalAuthJwt,
   async (req: AuthRequest, res: Response, next: NextFunction) => {
-     console.log("POST /api/orders hit");
+    console.log("POST /api/orders hit")
     try {
       const { items, customerName, customerPhone } = req.body as {
-        items?: { menuItemId: string; qty: number }[];
-        customerName?: string;
-        customerPhone?: string;
-      };
-
-      if (!items || !Array.isArray(items) || items.length === 0) {
-        return res.status(400).json({ message: "Order items are required" });
+        items?: { menuItemId: string; qty: number }[]
+        customerName?: string
+        customerPhone?: string
       }
 
-      const itemIds = items.map((i) => i.menuItemId);
-      const menuItems = await MenuItem.find({ _id: { $in: itemIds } });
+      if (!items || !Array.isArray(items) || items.length === 0) {
+        return res.status(400).json({ message: "Order items are required" })
+      }
+
+      const itemIds = items.map((i) => i.menuItemId)
+      const menuItems = await MenuItem.find({ _id: { $in: itemIds } })
 
       const orderItems = items.map((i) => {
         const menuItem = menuItems.find(
           (m) => m._id.toString() === i.menuItemId
-        );
+        )
         if (!menuItem) {
-          throw new Error("Menu item not found");
+          throw new Error("Menu item not found")
         }
 
         return {
@@ -46,33 +47,30 @@ router.post(
           name: menuItem.name,
           price: menuItem.price,
           qty: i.qty,
-        };
-      });
+        }
+      })
 
-      const totalPrice = orderItems.reduce(
-        (sum, i) => sum + i.price * i.qty,
-        0
-      );
+      const totalPrice = orderItems.reduce((sum, i) => sum + i.price * i.qty, 0)
 
       const orderData: Partial<IOrder> = {
         items: orderItems,
         totalPrice,
         customerName,
         customerPhone,
-      };
-
-      if (req.user?.id) {
-        orderData.customerId = req.user.id as any;
       }
 
-      const order = await Order.create(orderData);
+      if (req.user?.id) {
+        orderData.customerId = req.user.id as any
+      }
 
-      return res.status(201).json(order);
+      const order = await Order.create(orderData)
+
+      return res.status(201).json(order)
     } catch (err) {
-      return next(err);
+      return next(err)
     }
   }
-);
+)
 
 /* Inloggad kund ser sina orders*/
 router.get(
@@ -82,14 +80,14 @@ router.get(
     try {
       const orders = await Order.find({ customerId: req.user!.id }).sort({
         createdAt: -1,
-      });
+      })
 
-      return res.json(orders);
+      return res.json(orders)
     } catch (err) {
-      return next(err);
+      return next(err)
     }
   }
-);
+)
 
 /*Kund avbryter sin egen order det är endast PENDING*/
 router.post(
@@ -97,53 +95,53 @@ router.post(
   optionalAuthJwt,
   async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
-      const { customerPhone } = req.body as { customerPhone?: string };
+      const { customerPhone } = req.body as { customerPhone?: string }
 
-      const order = await Order.findById(req.params.id);
+      const order = await Order.findById(req.params.id)
       if (!order) {
-        return res.status(404).json({ message: "Order not found" });
+        return res.status(404).json({ message: "Order not found" })
       }
 
       if (order.customerId) {
         if (!req.user || order.customerId.toString() !== req.user.id) {
-          return res.status(403).json({ message: "Not your order" });
+          return res.status(403).json({ message: "Not your order" })
         }
       } else {
         if (!customerPhone) {
           return res.status(400).json({
             message: "Phone number is required to cancel guest order",
-          });
+          })
         }
 
         if (!order.customerPhone || order.customerPhone !== customerPhone) {
           return res.status(403).json({
             message: "Phone number does not match this order",
-          });
+          })
         }
       }
 
       if (order.status !== "PENDING") {
         return res
           .status(400)
-          .json({ message: "Order can no longer be cancelled" });
+          .json({ message: "Order can no longer be cancelled" })
       }
 
-      order.status = "CANCELLED";
+      order.status = "CANCELLED"
       if (order.paymentStatus === "PAID") {
-        order.paymentStatus = "REFUNDED";
+        order.paymentStatus = "REFUNDED"
       }
-      await order.save();
+      await order.save()
 
-      return res.json(order);
+      return res.json(order)
     } catch (err) {
-      return next(err);
+      return next(err)
     }
   }
-);
+)
 
 // Här börjar personal routes STAFF/ADMIN
-router.use(authJwt);
-router.use(requireRole("STAFF"));
+router.use(authJwt)
+router.use(requireRole("STAFF"))
 
 /* Personal ser alla aktuella ej CANCELLED */
 router.get(
@@ -152,88 +150,88 @@ router.get(
     try {
       const orders = await Order.find({
         status: { $ne: "CANCELLED" },
-      }).sort({ createdAt: 1 });
+      }).sort({ createdAt: 1 })
 
-      return res.json(orders);
+      return res.json(orders)
     } catch (err) {
-      return next(err);
+      return next(err)
     }
   }
-);
-
+)
 
 router.post(
   "/:id/lock",
   async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
-      const order = await Order.findById(req.params.id);
+      const order = await Order.findById(req.params.id)
       if (!order) {
-        return res.status(404).json({ message: "Order not found" });
+        return res.status(404).json({ message: "Order not found" })
       }
 
       if (order.status !== "PENDING") {
-        return res.status(400).json({ message: "Order cannot be locked" });
+        return res.status(400).json({ message: "Order cannot be locked" })
       }
 
-      order.status = "LOCKED";
-      await order.save();
-      return res.json(order);
+      order.status = "LOCKED"
+      await order.save()
+      return res.json(order)
     } catch (err) {
-      return next(err);
+      return next(err)
     }
   }
-);
+)
 
 router.post(
   "/:id/ready",
   async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
-      const order = await Order.findById(req.params.id);
+      const order = await Order.findById(req.params.id)
       if (!order) {
-        return res.status(404).json({ message: "Order not found" });
+        return res.status(404).json({ message: "Order not found" })
       }
 
       if (order.status !== "LOCKED") {
-        return res
-          .status(400)
-          .json({ message: "Order must be locked first" });
+        return res.status(400).json({ message: "Order must be locked first" })
       }
 
-      order.status = "READY";
-      await order.save();
-      return res.json(order);
+      //Inventory ändras precis innan en order sätts till READY
+      await deductInventory(order)
+
+      order.status = "READY"
+      await order.save()
+      return res.json(order)
     } catch (err) {
-      return next(err);
+      return next(err)
     }
   }
-);
+)
 
 router.post(
   "/:id/cancel-staff",
   async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
-      const order = await Order.findById(req.params.id);
+      const order = await Order.findById(req.params.id)
       if (!order) {
-        return res.status(404).json({ message: "Order not found" });
+        return res.status(404).json({ message: "Order not found" })
       }
 
       if (order.status === "LOCKED" || order.status === "CANCELLED") {
         return res
           .status(400)
-          .json({ message: "Order cannot be cancelled in this state" });
+          .json({ message: "Order cannot be cancelled in this state" })
       }
 
-      order.status = "CANCELLED";
+      order.status = "CANCELLED"
       if (order.paymentStatus === "PAID") {
-        order.paymentStatus = "REFUNDED";
+        order.paymentStatus = "REFUNDED"
       }
-      await order.save();
+      await order.save()
 
-      return res.json(order);
+      return res.json(order)
     } catch (err) {
-      return next(err);
+      return next(err)
     }
   }
-);
+)
 
-export default router;
+export default router

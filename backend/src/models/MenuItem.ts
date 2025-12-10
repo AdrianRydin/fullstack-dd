@@ -1,5 +1,11 @@
 import { Schema, model, InferSchemaType } from "mongoose"
 
+interface Ingredient {
+  name: string
+  amount: number
+  unit: string
+}
+
 export interface IMenuItem extends Document {
   name: string
   description?: string
@@ -8,7 +14,7 @@ export interface IMenuItem extends Document {
   imageUrl?: string
   isAvailable: boolean
   tags?: string[]
-  ingredients?: string[]
+  ingredients?: Ingredient[]
 }
 
 const menuItemSchema = new Schema(
@@ -45,8 +51,9 @@ const menuItemSchema = new Schema(
     ],
     ingredients: [
       {
-        type: String,
-        trim: true,
+        name: { type: String, trim: true },
+        amount: { type: Number, required: true },
+        unit: { type: String, trim: true },
       },
     ],
   },
