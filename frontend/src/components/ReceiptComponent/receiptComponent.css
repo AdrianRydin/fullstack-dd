@@ -52,6 +52,75 @@
   font-size: 1rem;
 }
 
+.receipt-status-badge {
+  margin-top: 0.5rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.receipt-status-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+}
+
+.receipt-status--pending {
+  background: rgba(255, 215, 0, 0.15);
+  color: #f6b800;
+  animation: receipt-pulse 1.2s ease-in-out infinite;
+}
+
+.receipt-status--pending .receipt-status-dot {
+  background: #f6b800;
+}
+
+.receipt-status--locked {
+  background: rgba(255, 152, 0, 0.15);
+  color: #ff9800;
+}
+
+.receipt-status--locked .receipt-status-dot {
+  background: #ff9800;
+}
+
+.receipt-status--ready {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+}
+
+.receipt-status--ready .receipt-status-dot {
+  background: #2ecc71;
+}
+
+.receipt-status--cancelled {
+  background: rgba(231, 76, 60, 0.15);
+  color: #e74c3c;
+}
+
+.receipt-status--cancelled .receipt-status-dot {
+  background: #e74c3c;
+}
+
+@keyframes receipt-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.97);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 @media (min-width: 1024px) {
   .receipt-component {
     padding: 3rem 2.5rem;
