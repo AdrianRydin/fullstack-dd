@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import HeaderLayout from "./HeaderLayout";
 import { useCart } from "../../cart/useCart";
+import { useAuth } from "../../../context/AuthContext";
+import Button from "../../../components/Button/Button";
 
 export default function MenuHeader({
   isMenuOpen,
@@ -13,6 +15,7 @@ export default function MenuHeader({
   isMenuOpen: boolean;
   onToggleMenu: () => void;
 }) {
+  const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
@@ -58,14 +61,10 @@ export default function MenuHeader({
           <Link to={"/menu"}>
             <h1>Menu</h1>
           </Link>
-          <Link to={"/about"}>
-            <h1>About us</h1>
-          </Link>
-          <Link to={"/contact"}>
-            <h1>Contact</h1>
-          </Link>
-          <Link to={"/cart"}>
-            <h1>Cart</h1>
+
+          <Link to={"/login"}>
+            {!isLoggedIn && <Button type="button" text="Login | Register" />}
+            {isLoggedIn && <Button type="button" text="Profile" />}
           </Link>
           <Link to={"/cart"} className="cart-icon-wrapper">
             <ShoppingCartIcon sx={{ fontSize: 30, color: "#dfd8c9" }} />

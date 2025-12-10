@@ -15,8 +15,9 @@
 .header-desktop-link-container {
   display: flex;
   color: white;
-  gap: 20px;
+  gap: 4rem;
   font-size: 16px;
+  align-items: center;
 }
 .header-desktop-link-container a {
   color: #dfd8c9;
@@ -39,5 +40,6 @@
 
   .header-desktop {
     display: flex;
+    align-items: center;
   }
 }
