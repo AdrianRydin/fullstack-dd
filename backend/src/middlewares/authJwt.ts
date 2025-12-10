@@ -1,4 +1,3 @@
-// src/middleware/authJwt.ts
 import { Request, Response, NextFunction } from "express";
 import { JwtPayload, verifyToken } from "../utils/Jwt";
 
@@ -6,7 +5,6 @@ export interface AuthRequest extends Request {
   user?: JwtPayload | null;
 }
 
-// Kräver token – används för skyddade routes
 export const authJwt = (
   req: AuthRequest,
   res: Response,
@@ -22,14 +20,14 @@ export const authJwt = (
 
   try {
     const decoded = verifyToken(token);
-    req.user = decoded; // { id, role }
+    req.user = decoded; // id, role
     next();
   } catch (err) {
     return res.status(401).json({ message: "Invalid token" });
   }
 };
 
-// Valfri token – används för t.ex. orders där kund kan vara gäst ELLER inloggad
+// Valfri token används för till ex orders där kund kan vara gäst eller om man inloggad
 export const optionalAuthJwt = (
   req: AuthRequest,
   _res: Response,
