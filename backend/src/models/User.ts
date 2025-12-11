@@ -1,14 +1,14 @@
-import { Schema, model, InferSchemaType } from "mongoose";
-import type { UserRole } from "../utils/Jwt";
+import { Schema, model, InferSchemaType } from "mongoose"
+import type { UserRole } from "../utils/Jwt"
 
 export interface IUser extends Document {
-  name?: string;
-  email: string;
-  passwordHash: string;
-  phone?: string;
-  role: UserRole;
-  createdAt: Date;
-  updatedAt: Date;
+  name?: string
+  email: string
+  passwordHash: string
+  phone?: string
+  role: UserRole
+  createdAt: Date
+  updatedAt: Date
 }
 
 const userSchema = new Schema(
@@ -35,14 +35,14 @@ const userSchema = new Schema(
     role: {
       type: String,
       enum: ["CUSTOMER", "STAFF", "ADMIN"],
-      default: "CUSTOMER",  
+      default: "CUSTOMER",
     },
   },
   { timestamps: true }
-);
+)
 
-export type User = InferSchemaType<typeof userSchema>;
+export type User = InferSchemaType<typeof userSchema>
 
-const UserModel = model<User>("User", userSchema);
+const UserModel = model<User>("User", userSchema)
 
-export default UserModel;
+export default UserModel
