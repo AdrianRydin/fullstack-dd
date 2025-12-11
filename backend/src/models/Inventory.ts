@@ -30,10 +30,6 @@ const inventorySchema = new Schema(
 
 export type InventoryItem = InferSchemaType<typeof inventorySchema>
 
-const InventoryModel = model<InventoryItem>(
-  "Inventory",
-  inventorySchema,
-  "inventory"
-)
+const InventoryModel = model<InventoryItem>("Inventory", inventorySchema)
 
 export default InventoryModel

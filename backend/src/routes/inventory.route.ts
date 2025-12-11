@@ -6,10 +6,10 @@ import { authJwt, requireRole, AuthRequest } from "../middlewares/authJwt"
 
 const router = Router()
 
-router.use(authApiKey)
+/* router.use(authApiKey)
 
 router.use(authJwt)
-router.use(requireRole("STAFF"))
+router.use(requireRole("STAFF")) */
 
 // GET /api/inventory
 // Lista alla ingredienser + drycker
