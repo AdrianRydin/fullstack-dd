@@ -92,12 +92,23 @@ router.post(
       });
 
       const { passwordHash, ...safeUser } = user.toObject();
-      return res.json({ token, user: safeUser });
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 1000 * 60 * 60 * 8,
+      });
+      return res.json({ user: safeUser });
     } catch (err) {
       console.error("Error logging in user", err);
       return next(err);
     }
   }
 );
+
+router.post("/logout", (_req: Request, res: Response) => {
+  res.clearCookie("token");
+  res.json({ success: true });
+});
 
 export default router;

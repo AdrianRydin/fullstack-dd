@@ -10,9 +10,7 @@ export const authJwt = (
   res: Response,
   next: NextFunction
 ) => {
-  const headerToken = req.headers["authorization"]?.toString().split(" ")[1];
-  const cookieToken = (req as any).cookies?.token;
-  const token = headerToken || cookieToken;
+  const token = req.cookies?.token;
 
   if (!token) {
     return res.status(401).json({ message: "No token provided" });
@@ -33,9 +31,7 @@ export const optionalAuthJwt = (
   _res: Response,
   next: NextFunction
 ) => {
-  const headerToken = req.headers["authorization"]?.toString().split(" ")[1];
-  const cookieToken = (req as any).cookies?.token;
-  const token = headerToken || cookieToken;
+  const token = req.cookies?.token;
 
   if (!token) {
     req.user = null;
@@ -43,8 +39,7 @@ export const optionalAuthJwt = (
   }
 
   try {
-    const decoded = verifyToken(token);
-    req.user = decoded;
+    req.user = verifyToken(token);
   } catch {
     req.user = null;
   }
