@@ -1,5 +1,5 @@
 import CartButton from "../../features/layout/Cart/CartButton";
-import { type SushiRoll } from "../../pages/Cart/Cart";
+import type { CartItem } from "../../features/cart/cartTypes";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -7,16 +7,16 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "./CartItemCard.css";
 
 interface CartCardProps {
-  item: SushiRoll;
-  increase: (id: number) => void;
-  decrease: (id: number) => void;
-  remove: (id: number) => void;
+  item: CartItem;
+  increase: () => void;
+  decrease: () => void;
+  remove: () => void;
 }
 
 function CartItemCard({ item, increase, remove, decrease }: CartCardProps) {
   return (
     <section className="cart-item-card">
-      <img src={item.image} />
+      <img src={item.image} alt={item.name} />
 
       <section className="cart-item-inner-wrapper">
         <h1 className="cart-item-name">{item.name}</h1>
@@ -27,13 +27,13 @@ function CartItemCard({ item, increase, remove, decrease }: CartCardProps) {
             {/* Decrease eller Remove beroende på quantity */}
             {item.quantity > 1 ? (
               <CartButton
-                onClick={() => decrease(item.id)}
+                onClick={decrease}
                 icon={<RemoveIcon />}
                 ariaLabel="Decrease quantity"
               />
             ) : (
               <CartButton
-                onClick={() => remove(item.id)}
+                onClick={remove}
                 icon={<DeleteIcon />}
                 ariaLabel="Remove item"
               />
@@ -43,13 +43,15 @@ function CartItemCard({ item, increase, remove, decrease }: CartCardProps) {
 
             {/* Increase */}
             <CartButton
-              onClick={() => increase(item.id)}
+              onClick={increase}
               icon={<AddIcon />}
               ariaLabel="Increase quantity"
             />
           </section>
 
-          <p className="cart-item-total">{item.price * item.quantity} kr</p>
+          <p className="cart-item-total">
+            {item.price * item.quantity} kr
+          </p>
         </section>
       </section>
     </section>

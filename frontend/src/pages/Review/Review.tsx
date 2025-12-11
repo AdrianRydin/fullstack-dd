@@ -2,25 +2,34 @@ import AddressForm from "../../components/AddressForm/AddressForm";
 import Button from "../../components/Button/Button";
 import OrderItemCard from "../../components/OrderItemCard/OrderItemCard";
 import "./review.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import CheckoutMethodSelector from "../../components/CheckoutMethodSelector/CheckoutMethodSelector";
 import SummaryBox from "../../components/SummaryBox/SummaryBox";
 import { validateOrder } from "../../utils/validateOrder";
 import { useCheckoutStore } from "../../features/review/reviewStore";
-import { useCartStore } from "../../features/cart/cartStore";
+import { useCart } from "../../features/cart/useCart";
+import { createOrder, updateOrder } from "../../api/orders";
 
 function Review() {
   const navigate = useNavigate();
-  const { items } = useCartStore();
-  const totalPrice = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
-  const { personalInfo, deliveryMethod, paymentMethod } = useCheckoutStore();
+  const location = useLocation();
+  const editingOrderId =
+    (location.state as { editingOrderId?: string } | null)
+      ?.editingOrderId;
+
+  const { items, totalPrice, clear } = useCart();
+  const {
+    personalInfo,
+    deliveryMethod,
+    paymentMethod,
+    setErrors,
+    resetCheckout,
+  } = useCheckoutStore();
+
   const deliveryFee = deliveryMethod === "home" ? 49 : 0;
   const total = totalPrice + deliveryFee;
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     const validation = validateOrder({
       personalInfo,
       deliveryMethod,
@@ -28,19 +37,51 @@ function Review() {
     });
 
     if (!validation.valid) {
+      setErrors(validation.errors);
       return;
     }
 
-    const orderData = {
-      items,
-      personalInfo,
-      deliveryMethod,
-      paymentMethod,
-      deliveryFee,
-      total,
-      orderNumber: Math.floor(Math.random() * 100000),
+    if (items.length === 0) {
+      return;
+    }
+    
+    const itemPayload = {
+      items: items.map((item) => ({
+        menuItemId: item.id,
+        qty: item.quantity,
+      })),
     };
-    navigate("/receipt", { state: orderData });
+
+    const createPayload = {
+      ...itemPayload,
+      customerName: personalInfo.name,
+      customerPhone: personalInfo.phone,
+    };
+
+    try {
+      const order = editingOrderId
+        ? await updateOrder(editingOrderId, itemPayload)
+        : await createOrder(createPayload);
+
+      const orderData = {
+        orderId: order._id,
+        orderStatus: order.status,
+        orderCreatedAt: order.createdAt,
+        items,
+        deliveryFee,
+        total,
+      };
+
+      clear();
+      resetCheckout();
+
+      navigate("/receipt", { state: orderData });
+    } catch (err) {
+      console.error("Failed to submit order", err);
+      alert(
+        "Could not submit order. It may already be locked or there was a server error."
+      );
+    }
   };
 
   return (
@@ -56,6 +97,7 @@ function Review() {
           )}
         </section>
       </section>
+
       <AddressForm />
       <CheckoutMethodSelector />
       <SummaryBox

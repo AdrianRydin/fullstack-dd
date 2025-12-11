@@ -1,4 +1,3 @@
-// src/middleware/errorHandler.ts
 import { Request, Response, NextFunction } from "express";
 
 export const errorHandler = (
@@ -7,7 +6,7 @@ export const errorHandler = (
   res: Response,
   _next: NextFunction
 ) => {
-  console.error("🔥 Error:", err);
+  console.error(" Error:", err);
   res.status(err.status || 500).json({
     message: err.message || "Server error",
   });

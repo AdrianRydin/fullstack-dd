@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import HeaderLayout from "./HeaderLayout";
 import "./backheader.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
+import Button from "../../../components/Button/Button";
 
 export default function BackHeader({
   isMenuOpen,
@@ -15,6 +17,8 @@ export default function BackHeader({
   const goBack = () => {
     navigate(-1);
   };
+
+  const { isLoggedIn } = useAuth();
   return (
     <HeaderLayout>
       {/* MOBILE */}
@@ -49,14 +53,13 @@ export default function BackHeader({
           <Link to={"/menu"}>
             <h1>Menu</h1>
           </Link>
-          <Link to={"/about"}>
-            <h1>About us</h1>
-          </Link>
-          <Link to={"/contact"}>
-            <h1>Contact</h1>
-          </Link>
+
           <Link to={"/cart"}>
             <h1>Cart</h1>
+          </Link>
+          <Link to={"/login"}>
+            {!isLoggedIn && <Button type="button" text="Login | Register" />}
+            {isLoggedIn && <Button type="button" text="Profile" />}
           </Link>
         </nav>
       </section>

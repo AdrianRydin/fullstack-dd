@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../../components/Header/header.css";
+import { useAuth } from "../../../context/AuthContext";
+import Button from "../../../components/Button/Button";
 
 export default function DefaultHeader({
   isMenuOpen,
@@ -8,6 +10,7 @@ export default function DefaultHeader({
   isMenuOpen: boolean;
   onToggleMenu: () => void;
 }) {
+  const { isLoggedIn } = useAuth();
   return (
     <header className="header-container-default">
       {/* MOBILE */}
@@ -30,14 +33,13 @@ export default function DefaultHeader({
             <Link to={"/menu"}>
               <h1>Menu</h1>
             </Link>
-            <Link to={"/about"}>
-              <h1>About us</h1>
-            </Link>
-            <Link to={"/contact"}>
-              <h1>Contact</h1>
-            </Link>
+
             <Link to={"/cart"}>
               <h1>Cart</h1>
+            </Link>
+            <Link to={"/login"}>
+              {!isLoggedIn && <Button type="button" text="Login | Register" />}
+              {isLoggedIn && <Button type="button" text="Profile" />}
             </Link>
           </nav>
         </div>

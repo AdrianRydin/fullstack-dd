@@ -1,3 +1,4 @@
+import { useAdminRedirect } from "../../features/authentication/hooks/useAdminRedirect"
 import { useInventory } from "../../features/inventory/useInventory"
 import "./AdminInventory.css"
 import type { InventoryItem } from "../../api/inventory"
@@ -38,6 +39,9 @@ function groupByCategory(items: InventoryItem[]) {
 }
 
 function AdminInventoryPage() {
+  const isAdmin = useAdminRedirect()
+  if (!isAdmin) return null
+
   const { items } = useInventory()
   const grouped = groupByCategory(items ?? [])
 

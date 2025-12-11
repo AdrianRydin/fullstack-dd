@@ -5,7 +5,7 @@ type Props = {
   setFilter: (value: string) => void
 }
 
-const FILTERS = ["Nigiri", "Maki", "Special", "Drink"]
+const FILTERS = ["Nigiri", "Maki", "Special", "Drink","All"]
 
 function MenuFilter({ filter, setFilter }: Props) {
   return (

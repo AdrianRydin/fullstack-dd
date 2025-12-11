@@ -1,0 +1,61 @@
+.admin-orders-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.order-container {
+  position: relative;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-container h2 {
+  align-self: flex-start;
+}
+
+.admin-orders-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Filter-rad */
+.orders-filter-bar {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.orders-filter-button {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  background-color: #e87461;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.orders-filter-buttonorder-filter-button--active {
+  border-radius: 999px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #d14b3e;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.order-container {
+  position: relative;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-container h2 {
+  align-self: flex-start;
+}
