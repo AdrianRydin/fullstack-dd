@@ -16,7 +16,7 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       const res = await loginUser({ email, password });
-      login(res.user, res.token);
+      login(res.user);
 
       if (res.user.role === "ADMIN" || res.user.role === "STAFF") {
         navigate("/admin-dashboard");

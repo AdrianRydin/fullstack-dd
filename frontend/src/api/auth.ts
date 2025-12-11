@@ -29,3 +29,7 @@ export function loginUser(data: Login) {
     body: JSON.stringify(data),
   });
 }
+
+export function logoutUser() {
+  return apiFetch("/auth/logout", { method: "POST" });
+}
