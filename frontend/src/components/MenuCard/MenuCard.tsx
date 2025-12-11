@@ -1,11 +1,11 @@
 import "./menucard.css";
 
 type MenuCardProps = {
-  id?: string;               // ⬅ ändrat från number till optional string
+  id?: string; 
   name: string;
   description: string;
   price: number;
-  image: string;             // image är fortfarande en string
+  image: string; 
   onAddToCart?: () => void;
 };
 

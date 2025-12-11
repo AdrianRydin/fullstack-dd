@@ -3,30 +3,45 @@ import { useLocation } from "react-router-dom";
 import { useCartStore } from "../../features/cart/cartStore";
 import { useEffect } from "react";
 import "./receipt.css";
-import { useCheckoutStore } from "../../features/review/reviewStore";
+import type { CartItem } from "../../features/cart/cartTypes";
+import type { OrderStatus } from "../../api/orders";
 
-// hämta order med orderId från backend sen?
+type ReceiptState = {
+  orderId: string;
+  orderStatus?: OrderStatus;
+  orderCreatedAt?: string;
+  items: CartItem[];
+  total: number;
+  deliveryFee: number;
+};
 
 function Receipt() {
   const { state } = useLocation();
+  const clearCart = useCartStore((s) => s.clear);
+
+  useEffect(() => {
+  clearCart();
+}, [clearCart]);
+
   if (!state) {
     return <p className="recipt-empty">No order found</p>;
   }
 
-  const { items, total, deliveryFee, orderNumber } = state;
-
-  const clearCart = useCartStore((state) => state.clear);
-  const resetCheckout = useCheckoutStore((state) => state.resetCheckout);
-
-  useEffect(() => {
-    clearCart();
-    resetCheckout();
-  }, []);
+  const {
+    orderId,
+    orderStatus,
+    orderCreatedAt,
+    items,
+    total,
+    deliveryFee,
+  } = state as ReceiptState;
 
   return (
     <main className="receipt-page">
       <ReceiptComponent
-        orderNumber={orderNumber}
+        orderId={orderId}
+        initialStatus={orderStatus}
+        createdAt={orderCreatedAt}
         items={items}
         totalPrice={total}
         deliveryFee={deliveryFee}
@@ -36,3 +51,4 @@ function Receipt() {
 }
 
 export default Receipt;
+

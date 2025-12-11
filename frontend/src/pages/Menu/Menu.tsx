@@ -40,11 +40,11 @@ export default function Menu() {
         {filteredMenu.map((item) => (
           <MenuCard
             key={item._id}
-            id={item._id}                 // id?: string → OK
+            id={item._id} 
             name={item.name}
             description={item.description}
             price={item.price}
-            image={item.imageUrl ?? ""}   // alltid string
+            image={item.imageUrl ?? ""} 
             onAddToCart={() =>
               addToCart({
                 id: item._id,
