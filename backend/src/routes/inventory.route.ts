@@ -26,7 +26,7 @@ router.get(
 )
 
 // PUT /api/inventory/:id
-// Uppdatera quantity
+// Uppdatera quantity. Används inte för tillfället.
 router.put(
   "/:id",
   async (req: AuthRequest, res: Response, next: NextFunction) => {

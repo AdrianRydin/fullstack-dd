@@ -16,7 +16,10 @@ export async function deductInventory(order: IOrder) {
     for (const ing of menuItem.ingredients) {
       const totalAmount = ing.amount * qty
 
-      const invItem = await Inventory.findOne({ name: ing.name })
+      //Inventory är inte case sensitive
+      const invItem = await Inventory.findOne({
+        name: new RegExp(`^${ing.name}$`, "i"),
+      })
 
       if (!invItem) {
         throw new Error(`Ingredient missing: ${ing.name}`)
