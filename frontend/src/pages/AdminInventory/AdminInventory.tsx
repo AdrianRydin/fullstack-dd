@@ -1,6 +1,10 @@
-import "./AdminInventory.css"
+import { useAdminRedirect } from "../../features/authentication/hooks/useAdminRedirect";
+import "./AdminInventory.css";
 
 function AdminInventoryPage() {
+  const isAdmin = useAdminRedirect();
+  if (!isAdmin) return null;
+
   return (
     <section className="wrapper">
       <h1 className="title">Inventory</h1>
@@ -45,7 +49,7 @@ function AdminInventoryPage() {
         </section>
       </section>
     </section>
-  )
+  );
 }
 
-export default AdminInventoryPage
+export default AdminInventoryPage;
