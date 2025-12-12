@@ -11,25 +11,21 @@
   margin-bottom: 2rem;
 }
 
-.row-wrapper {
+.titles-wrapper {
   display: flex;
   flex-direction: row;
-}
-
-.item-wrapper {
-  display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 .title {
   font-weight: 400;
 }
 
-.item-wrapper,
-.qty-wrapper {
+.item-wrapper {
   display: flex;
-  flex-direction: column;
   flex: 1;
+  justify-content: space-between;
   gap: 0.5rem;
 }
 
