@@ -18,17 +18,27 @@ import OrderDetailsPage from "./pages/OrderDetails/OrderDetails";
 import AdminOrders from "./features/authentication/pages/AdminOrders/AdminOrders";
 import AdminInventoryPage from "./pages/AdminInventory/AdminInventory";
 import AdminDashboardPage from "./pages/AdminDashboard/AdminDashboard";
+import { useAuthStatus } from "./features/hooks/useAuthStatus";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isLoggedIn, user } = useAuthStatus();
+
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Header
         isMenuOpen={isMenuOpen}
         onToggleMenu={() => setIsMenuOpen((prev) => !prev)}
+        isLoggedIn={isLoggedIn}
+        user={user}
       />
-      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <MenuOverlay
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        isLoggedIn={isLoggedIn}
+        user={user}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />

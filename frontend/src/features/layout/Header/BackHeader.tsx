@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import HeaderLayout from "./HeaderLayout";
 import "./backheader.css";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../context/AuthContext";
-import Button from "../../../components/Button/Button";
+
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useAuthStatus } from "../../hooks/useAuthStatus";
+import { useCart } from "../../cart/useCart";
 
 export default function BackHeader({
   isMenuOpen,
@@ -18,7 +20,8 @@ export default function BackHeader({
     navigate(-1);
   };
 
-  const { isLoggedIn } = useAuth();
+  const { loading, isLoggedIn } = useAuthStatus();
+  const { totalQuantity } = useCart();
   return (
     <HeaderLayout>
       {/* MOBILE */}
@@ -50,16 +53,28 @@ export default function BackHeader({
         />
 
         <nav className="header-desktop-link-container">
+          <Link to={"/"}>
+            <h1>Home</h1>
+          </Link>
           <Link to={"/menu"}>
             <h1>Menu</h1>
           </Link>
 
-          <Link to={"/cart"}>
-            <h1>Cart</h1>
-          </Link>
-          <Link to={"/login"}>
-            {!isLoggedIn && <Button type="button" text="Login | Register" />}
-            {isLoggedIn && <Button type="button" text="Profile" />}
+          {loading ? null : isLoggedIn ? (
+            <Link to={"/previous-orders"}>
+              <h1>Profile</h1>
+            </Link>
+          ) : (
+            <Link to={"/login"}>
+              <h1>Login | Register</h1>
+            </Link>
+          )}
+
+          <Link to={"/cart"} className="cart-icon-wrapper">
+            <ShoppingCartIcon sx={{ fontSize: 30, color: "#dfd8c9" }} />
+            {totalQuantity > 0 && (
+              <span className="cart-badge">{totalQuantity}</span>
+            )}
           </Link>
         </nav>
       </section>

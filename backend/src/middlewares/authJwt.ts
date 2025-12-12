@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from "express";
-import { JwtPayload, verifyToken } from "../utils/Jwt";
+import { Request, Response, NextFunction } from "express"
+import { JwtPayload, verifyToken } from "../utils/Jwt"
 
 export interface AuthRequest extends Request {
-  user?: JwtPayload | null;
+  user?: JwtPayload | null
 }
 
 export const authJwt = (
@@ -10,20 +10,20 @@ export const authJwt = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.cookies?.token;
+  const token = req.cookies?.token
 
   if (!token) {
-    return res.status(401).json({ message: "No token provided" });
+    return res.status(401).json({ message: "No token provided" })
   }
 
   try {
-    const decoded = verifyToken(token);
-    req.user = decoded; // id, role
-    next();
+    const decoded = verifyToken(token)
+    req.user = decoded // id, role
+    next()
   } catch (err) {
-    return res.status(401).json({ message: "Invalid token" });
+    return res.status(401).json({ message: "Invalid token" })
   }
-};
+}
 
 // Valfri token används för till ex orders där kund kan vara gäst eller om man inloggad
 export const optionalAuthJwt = (
@@ -31,32 +31,32 @@ export const optionalAuthJwt = (
   _res: Response,
   next: NextFunction
 ) => {
-  const token = req.cookies?.token;
+  const token = req.cookies?.token
 
   if (!token) {
-    req.user = null;
-    return next();
+    req.user = null
+    return next()
   }
 
   try {
-    req.user = verifyToken(token);
+    req.user = verifyToken(token)
   } catch {
-    req.user = null;
+    req.user = null
   }
 
-  next();
-};
+  next()
+}
 
 export const requireRole = (role: "STAFF" | "ADMIN") => {
   return (req: AuthRequest, res: Response, next: NextFunction) => {
     if (!req.user) {
-      return res.status(401).json({ message: "Not authenticated" });
+      return res.status(401).json({ message: "Not authenticated" })
     }
 
     if (req.user.role !== role && req.user.role !== "ADMIN") {
-      return res.status(403).json({ message: "Forbidden" });
+      return res.status(403).json({ message: "Forbidden" })
     }
 
-    next();
-  };
-};
+    next()
+  }
+}

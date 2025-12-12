@@ -1,55 +1,75 @@
-import { useAdminRedirect } from "../../features/authentication/hooks/useAdminRedirect";
-import "./AdminInventory.css";
+import { useAdminRedirect } from "../../features/authentication/hooks/useAdminRedirect"
+import { useInventory } from "../../features/inventory/useInventory"
+import "./AdminInventory.css"
+import type { InventoryItem } from "../../api/inventory"
+
+const categoryLookup: Record<string, string> = {
+  salmon: "Fish and Seafood",
+  tuna: "Fish and Seafood",
+  shrimp: "Fish and Seafood",
+
+  rice: "Rice and Base Ingredients",
+  nori: "Rice and Base Ingredients",
+
+  cucumber: "Vegetables",
+  avocado: "Vegetables",
+  carrot: "Vegetables",
+
+  "sparkling water": "Drinks",
+  "sparkling cola drink": "Drinks",
+  "strawberry sparkle drink": "Drinks",
+  "vanilla fizz drink": "Drinks",
+  "green tea": "Drinks",
+}
+
+function groupByCategory(items: InventoryItem[]) {
+  const groups: Record<string, InventoryItem[]> = {}
+
+  console.log("Grouping items:", items)
+
+  for (const item of items) {
+    const category = categoryLookup[item.name.toLowerCase()] || "Uncategorized"
+
+    if (!groups[category]) groups[category] = []
+    groups[category].push(item)
+  }
+
+  console.log(groups)
+  return groups
+}
 
 function AdminInventoryPage() {
-  const isAdmin = useAdminRedirect();
-  if (!isAdmin) return null;
+  const isAdmin = useAdminRedirect()
+  if (!isAdmin) return null
+
+  const { items } = useInventory()
+  const grouped = groupByCategory(items ?? [])
 
   return (
     <section className="wrapper">
       <h1 className="title">Inventory</h1>
 
-      <section className="category-card">
-        <h2 className="title">Fish and Seafood</h2>
-        <section className="row-wrapper">
-          <section className="item-wrapper">
-            <h3 className="title">Item</h3>
-            <p>Salmon</p>
-            <p>Salmon</p>
-            <p>Salmon</p>
-            <p>Salmon</p>
-          </section>
-          <section className="qty-wrapper">
-            <h3 className="title">Quantity</h3>
-            <p>2</p>
-            <p>2</p>
-            <p>2</p>
-            <p>2</p>
-          </section>
-        </section>
-      </section>
+      {Object.entries(grouped).map(([category, items]) => (
+        <section className="category-card" key={category}>
+          <h2 className="title">{category}</h2>
 
-      <section className="category-card">
-        <h2 className="title">Rice and base ingredients</h2>
-        <section className="row-wrapper">
-          <section className="item-wrapper">
+          <section className="titles-wrapper">
             <h3 className="title">Item</h3>
-            <p>Salmon</p>
-            <p>Salmon</p>
-            <p>Salmon</p>
-            <p>Salmon</p>
-          </section>
-          <section className="qty-wrapper">
             <h3 className="title">Quantity</h3>
-            <p>2</p>
-            <p>2</p>
-            <p>2</p>
-            <p>2</p>
           </section>
+
+          {items.map((item) => (
+            <section className="item-wrapper" key={item._id}>
+              <p>{item.name}</p>
+              <p>
+                {item.quantity} {item.unit}
+              </p>
+            </section>
+          ))}
         </section>
-      </section>
+      ))}
     </section>
-  );
+  )
 }
 
-export default AdminInventoryPage;
+export default AdminInventoryPage

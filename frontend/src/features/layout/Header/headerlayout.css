@@ -1,17 +1,12 @@
 .header-container-global {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
-  width: 100vw;
-
-  margin-top: 1rem;
+  right: 0;
   height: 5rem;
-  padding: 0 1rem;
   box-sizing: border-box;
-
   background-color: transparent;
   z-index: 50;
-
   display: flex;
   align-items: center;
 }
