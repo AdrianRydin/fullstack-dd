@@ -13,3 +13,33 @@
   line-height: 1;
   cursor: pointer;
 }
+
+.button--primary .button--secondary {
+  background-color: #f1f1f1;
+  color: #222;
+}
+.button--ghost {
+  background: transparent;
+  color: #e87461;
+  border: 1px solid #e87461;
+}
+
+/* småknapp-klass för inline-layout */
+.button--small {
+  display: inline-block;
+  width: auto;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+}
+
+/* Om du vill ändra admin-knappens utseende separat */
+.button--admin {
+  display: inline-block;
+  width: auto;
+  padding: 6px 12px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  background-color: #2b6cb0; /* ex blå admin-knapp */
+  color: white;
+}

@@ -18,6 +18,8 @@ import OrderDetailsPage from "./pages/OrderDetails/OrderDetails";
 import AdminOrders from "./features/authentication/pages/AdminOrders/AdminOrders";
 import AdminInventoryPage from "./pages/AdminInventory/AdminInventory";
 import AdminDashboardPage from "./pages/AdminDashboard/AdminDashboard";
+import AdminMenu from "./pages/AdminMenu/AdminMenu";
+import AdminAdd from "./pages/AdminAdd/AdminAdd";
 import { useAuthStatus } from "./features/hooks/useAuthStatus";
 
 function App() {
@@ -53,7 +55,10 @@ function App() {
         <Route path="/admin-orders" element={<AdminOrders />} />
         <Route path="/admin-inventory" element={<AdminInventoryPage />} />
         <Route path="/admin-dashboard" element={<AdminDashboardPage />} />
+        <Route path="/admin-menu" element={<AdminMenu />} />
+        <Route path="/admin/add" element={<AdminAdd />} />
       </Routes>
+
       <Footer />
     </BrowserRouter>
   );
