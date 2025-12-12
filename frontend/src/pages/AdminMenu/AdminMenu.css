@@ -1,10 +1,10 @@
-.menu-title-wrapper {
+.menu-title-wrapper-admin {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  margin: 4rem 0 3rem;
-  padding-right: 3rem;
+  flex-direction: column;
+  margin: 3rem 0;
+  gap: 3rem;
 }
 
 .menu-title {
@@ -12,14 +12,6 @@
   font-weight: 600;
   color: #f5f0e6;
   margin: 0;
-}
-
-.menu-title-dash {
-  display: inline-block;
-  width: 2.5rem;
-  height: 2px;
-  background-color: #f46a4e;
-  transform: translateY(1px);
 }
 
 .menu-list {
@@ -34,14 +26,24 @@
   margin-right: auto;
 }
 
+.admin-add-button button {
+  border-radius: 0;
+}
+
 @media (min-width: 576px) {
   .menu-list {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  .menu-title-wrapper-admin {
+    margin-top: 4rem;
   }
 }
 @media (min-width: 1024px) {
   .menu-list {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     margin: 6rem auto 4rem auto;
+  }
+  .menu-title-wrapper-admin {
+    margin-top: 5rem;
   }
 }
