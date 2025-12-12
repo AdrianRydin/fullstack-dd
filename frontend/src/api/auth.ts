@@ -20,6 +20,7 @@ export function registerUser(data: Register) {
   });
 }
 
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 export function loginUser(data: Login) {
   return apiFetch<{
     token: string;

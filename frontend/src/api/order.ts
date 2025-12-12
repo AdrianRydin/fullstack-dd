@@ -68,3 +68,15 @@ export function getOrder
 (orderId: string, token?: string) {
   return apiFetch<OrderResponse>(`/orders/${orderId}`, {}, token);
 }
+
+export function cancelOrder(orderId: string, token?: string) {
+  return apiFetch<OrderResponse>(
+    `/orders/${orderId}/cancel`,
+    { method: "POST" },
+    token
+  );
+}
+
+export function getMyOrders() {
+  return apiFetch<OrderResponse[]>("/orders/my");
+}

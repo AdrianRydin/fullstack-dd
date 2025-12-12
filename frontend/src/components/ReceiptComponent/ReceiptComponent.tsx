@@ -4,9 +4,10 @@ import logo from "../../assets/logo-full-transparent.png";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import type { CartItem } from "../../features/cart/cartTypes";
-import { getOrder } from "../../api/orders";
-import type { OrderStatus } from "../../api/orders";
+import { getOrder, cancelOrder } from "../../api/order";
+import type { OrderStatus } from "../../api/order";
 import { useCartStore } from "../../features/cart/cartStore";
+import { useAuthStore } from "../../features/authentication/store/authStore";
 
 interface ReceiptComponentProps {
   orderId: string;
@@ -28,30 +29,31 @@ function ReceiptComponent({
   const navigate = useNavigate();
   const [status, setStatus] = useState<OrderStatus>(initialStatus);
   const setCartItems = useCartStore((s) => s.setItems);
+  const {token}=useAuthStore()
 
   // hämta status från backend
   useEffect(() => {
-    let cancelled = false;
+  let cancelled = false;
 
-    async function fetchStatus() {
-      try {
-        const order = await getOrder(orderId);
-        if (!cancelled) {
-          setStatus(order.status);
-        }
-      } catch (err) {
-        console.error("Failed to fetch order status", err);
+  async function fetchStatus() {
+    try {
+      const order = await getOrder(orderId, token || undefined);
+      if (!cancelled) {
+        setStatus(order.status);
       }
+    } catch (err) {
+      console.error("Failed to fetch order status", err);
     }
+  }
 
-    fetchStatus();
-    const intervalId = setInterval(fetchStatus, 5000);
+  fetchStatus();
+  const intervalId = setInterval(fetchStatus, 5000);
 
-    return () => {
-      cancelled = true;
-      clearInterval(intervalId);
-    };
-  }, [orderId]);
+  return () => {
+    cancelled = true;
+    clearInterval(intervalId);
+  };
+}, [orderId, token]);
 
   const shortOrderNumber =
     orderId?.slice(-6)?.toUpperCase() ?? "??????";
@@ -62,19 +64,19 @@ function ReceiptComponent({
 
   const statusConfig = {
     PENDING: {
-      label: "Status: Mottagen (väntar)",
+      label: "Status: Pending (Waiting)",
       className: "receipt-status--pending",
     },
     LOCKED: {
-      label: "Status: Låst – tillagas",
+      label: "Status: Order locked",
       className: "receipt-status--locked",
     },
     READY: {
-      label: "Status: Klar för upphämtning",
+      label: "Status: Ready for delivery",
       className: "receipt-status--ready",
     },
     CANCELLED: {
-      label: "Status: Avbruten",
+      label: "Status: Canceled",
       className: "receipt-status--cancelled",
     },
   }[status];
@@ -83,6 +85,28 @@ function ReceiptComponent({
     setCartItems(items);
     navigate("/Cart", { state: { editingOrderId: orderId } });
   };
+
+  const handleMyOrdersClick = () => {
+  navigate("/previous-orders");
+};
+
+const handleCancelOrder = async () => {
+  const confirmed = window.confirm(
+    "Are you sure you want to cancel this order?"
+  );
+  if (!confirmed) return;
+
+  try {
+    const updated = await cancelOrder(orderId, token || undefined);
+    setStatus(updated.status); // blir "CANCELLED"
+    alert("Your order has been cancelled.");
+  } catch (err) {
+    console.error("Failed to cancel order", err);
+    alert(
+      "Could not cancel the order. It may already be locked or processed."
+    );
+  }
+};
 
   return (
     <section className="receipt-component">
@@ -110,11 +134,14 @@ function ReceiptComponent({
         <h2 className="receipt-total">Total: {totalPrice} kr</h2>
       </article>
 
-      {status === "PENDING" && (
-        <Button text="Edit order" onClick={handleEditOrder} />
+     {status === "PENDING" && (
+        <>
+          <Button text="Edit order" onClick={handleEditOrder} />
+          <Button text="Cancel order" onClick={handleCancelOrder} />
+        </>
       )}
 
-      <Button text="My orders" onClick={() => navigate("/previous-orders")} />
+      <Button text="My orders" onClick={handleMyOrdersClick} />
       <Button text="Home" onClick={() => navigate("/")} />
     </section>
   );
