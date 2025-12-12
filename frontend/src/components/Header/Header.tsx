@@ -1,16 +1,24 @@
 import "./header.css";
-import { matchPath, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import DefaultHeader from "../../features/layout/Header/DefaultHeader.tsx";
 import MenuHeader from "../../features/layout/Header/MenuHeader.tsx";
 import BackHeader from "../../features/layout/Header/BackHeader.tsx";
+import type { AuthUser } from "../../types/User.ts";
+import ProfileHeader from "../../features/layout/Header/ProfileHeader.tsx";
 
 type HeaderProps = {
   isMenuOpen: boolean;
   onToggleMenu: () => void;
+  isLoggedIn: boolean;
+  user: AuthUser | null;
 };
 
 export default function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
   const { pathname } = useLocation();
+
+  const backHeaderPaths = ["/about", "/cart", "/login", "/register", "/review"];
+
+  const profileHeaderPaths = ["/profile", "/reviewOrder", "/previous-orders"];
 
   if (pathname === "/" || pathname === "/receipt") {
     return (
@@ -21,20 +29,14 @@ export default function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
     return <MenuHeader isMenuOpen={isMenuOpen} onToggleMenu={onToggleMenu} />;
   }
 
-  const backHeaderPaths = [
-    "/about",
-    "/cart",
-    "/login",
-    "/register",
-    "/review",
-    "/profile",
-    "/reviewOrder",
-  ];
-
-  const isProfileRoute = matchPath("/profile/*", pathname);
-
-  if (backHeaderPaths.includes(pathname) || isProfileRoute) {
+  if (backHeaderPaths.includes(pathname)) {
     return <BackHeader isMenuOpen={isMenuOpen} onToggleMenu={onToggleMenu} />;
+  }
+
+  if (profileHeaderPaths.includes(pathname)) {
+    return (
+      <ProfileHeader isMenuOpen={isMenuOpen} onToggleMenu={onToggleMenu} />
+    );
   }
 
   return <DefaultHeader isMenuOpen={isMenuOpen} onToggleMenu={onToggleMenu} />;

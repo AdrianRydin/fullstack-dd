@@ -1,20 +1,21 @@
-import { apiFetch } from "./client";
+import { apiFetch } from "./client"
 
 export interface MenuItem {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  imageUrl?: string;
-  isAvaliable: boolean;
-  tags?: string[];
+  _id: string
+  name: string
+  description: string
+  price: number
+  category: string
+  imageUrl?: string
+  isAvaliable: boolean
+  tags?: string[]
+  ingredients?: string[]
 }
 
-export type NewMenuItem = Omit<MenuItem, "_id">;
+export type NewMenuItem = Omit<MenuItem, "_id">
 
 export function getMenu() {
-  return apiFetch<MenuItem[]>("/menu");
+  return apiFetch<MenuItem[]>("/menu")
 }
 
 export function createMenuItem(data: NewMenuItem, token: string) {
@@ -22,7 +23,7 @@ export function createMenuItem(data: NewMenuItem, token: string) {
     "/menu",
     { method: "POST", body: JSON.stringify(data) },
     token
-  );
+  )
 }
 
 export function updateMenuItem(
@@ -34,9 +35,9 @@ export function updateMenuItem(
     `/menu/${id}`,
     { method: "PUT", body: JSON.stringify(data) },
     token
-  );
+  )
 }
 
 export function deleteMenuItem(id: string, token: string) {
-  return apiFetch<undefined>(`/menu/${id}`, { method: "DELETE" }, token);
+  return apiFetch<undefined>(`/menu/${id}`, { method: "DELETE" }, token)
 }

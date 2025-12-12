@@ -3,7 +3,7 @@ import Button from "../../components/Button/Button";
 import "./cart.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCart } from "../../features/cart/useCart";
-import { updateOrder } from "../../api/orders";
+import { updateOrder } from "../../api/order";
 import { useCheckoutStore } from "../../features/review/reviewStore";
 
 export default function Cart() {

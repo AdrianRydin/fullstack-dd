@@ -2,10 +2,13 @@ import "./menu-overlay.css";
 import { useEffect, useRef } from "react";
 import { animate } from "motion";
 import { MenuLink } from "../../features/layout/MenuLink/MenuLink";
+import type { AuthUser } from "../../types/User";
 
 type MenuOverlayProps = {
   isOpen: boolean;
   onClose: () => void;
+  isLoggedIn: boolean;
+  user: AuthUser | null;
 };
 
 export default function Menu({ isOpen, onClose }: MenuOverlayProps) {
@@ -48,9 +51,8 @@ export default function Menu({ isOpen, onClose }: MenuOverlayProps) {
         <MenuLink to="/" label="Home" onClose={onClose} />
         <MenuLink to="/menu" label="Menu" onClose={onClose} />
         <MenuLink to="/register" label="Login/Register" onClose={onClose} />
-        <MenuLink to="/about" label="About us" onClose={onClose} />
         <MenuLink to="/cart" label="Cart" onClose={onClose} />
-        <MenuLink to="/contact" label="Contact" onClose={onClose} />
+        <MenuLink to="/previous-orders" label="Profile" onClose={onClose} />
       </aside>
     </section>
   );

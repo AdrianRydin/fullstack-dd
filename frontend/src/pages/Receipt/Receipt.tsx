@@ -4,7 +4,7 @@ import { useCartStore } from "../../features/cart/cartStore";
 import { useEffect } from "react";
 import "./receipt.css";
 import type { CartItem } from "../../features/cart/cartTypes";
-import type { OrderStatus } from "../../api/orders";
+import type { OrderStatus } from "../../api/order";
 
 type ReceiptState = {
   orderId: string;

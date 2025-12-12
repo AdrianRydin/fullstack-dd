@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import UserModel from "../models/User";
 import { authApiKey } from "../middlewares/authApiKey";
 import { createToken } from "../utils/Jwt";
+import { optionalAuthJwt, AuthRequest } from "../middlewares/authJwt";
 
 const router = Router();
 router.use(authApiKey);
@@ -109,6 +110,17 @@ router.post(
 router.post("/logout", (_req: Request, res: Response) => {
   res.clearCookie("token");
   res.json({ success: true });
+});
+
+router.get("/me", optionalAuthJwt, (req: AuthRequest, res: Response) => {
+  if (!req.user) {
+    return res.json({ authenticated: false, user: null });
+  }
+
+  return res.json({
+    authenticated: true,
+    user: req.user,
+  });
 });
 
 export default router;

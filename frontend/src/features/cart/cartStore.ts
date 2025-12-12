@@ -19,11 +19,13 @@ export const useCartStore = create<CartState>((set, get) => ({
   addToCart: (item) => {
     const items = get().items
     const exists = items.find((i) => i.id === item.id)
+
     const newItems = exists
       ? items.map((i) =>
           i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
         )
       : [...items, item]
+
     set({ items: newItems })
   },
 
@@ -40,6 +42,7 @@ export const useCartStore = create<CartState>((set, get) => ({
         i.id === id ? { ...i, quantity: Math.max(1, i.quantity - 1) } : i
       )
       .filter((i) => i.quantity > 0)
+
     set({ items: newItems })
   },
 

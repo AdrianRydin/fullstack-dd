@@ -16,7 +16,7 @@
   z-index: 30;
 }
 .header-container-default {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
