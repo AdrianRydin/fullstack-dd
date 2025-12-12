@@ -3,7 +3,7 @@ import { API_BASE_URL, API_KEY } from "../config/api";
 export async function apiFetch<T>(
   path: string,
   options: RequestInit = {},
-  token?: string           // 👈 ny tredje parameter
+  token?: string
 ): Promise<T> {
   const headers = new Headers(options.headers);
 
