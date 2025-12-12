@@ -10,11 +10,13 @@ import MenuCard from "../../components/MenuCard/MenuCard";
 import FavoriteCard from "../../components/FavoriteCard/FavoriteCard";
 import { getMenu } from "../../api/menu";
 import type { MenuItem } from "../../api/menu";
+import { useCartStore } from "../../features/cart/cartStore";
 
 export default function Home() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const addToCart = useCartStore((state) => state.addToCart);
 
-   useEffect(() => {
+  useEffect(() => {
     getMenu()
       .then((items) => {
         const sorted = [...items].sort((a, b) => {
@@ -39,7 +41,6 @@ export default function Home() {
   const foodItems = menuItems.filter(
     (item) => (item.category || "").toLowerCase() !== "drinks"
   );
-
 
   const previewMenu = foodItems.slice(0, 3);
   // Om vi vill använda tags:
@@ -108,13 +109,25 @@ export default function Home() {
               name: item.name,
               price: item.price,
               imageUrl: item.imageUrl ?? "",
+              description: item.description ?? "", 
             }))}
             popular={popularItems.map((item) => ({
               id: item._id,
               name: item.name,
               price: item.price,
               imageUrl: item.imageUrl ?? "",
+              description: item.description ?? "", 
             }))}
+            onAddToCart={(dish) => 
+              addToCart({
+                id: dish.id,
+                name: dish.name,
+                price: dish.price,
+                image: dish.imageUrl ?? "",
+                description: dish.description ?? "", 
+                quantity: 1
+              })
+            }
           />
         </div>
       </section>
@@ -135,11 +148,11 @@ export default function Home() {
             </h2>
 
             <p className="about-card-text">
-              Our inspiration comes from the heart of Japanese culinary
-              culture: respect for ingredients, balance in taste, and a
-              dedication to detail. Whether you join us for a quick lunch, a
-              cozy dinner, or a celebration with friends, we aim to create
-              moments that are memorable and comforting.
+              Our inspiration comes from the heart of Japanese culinary culture:
+              respect for ingredients, balance in taste, and a dedication to
+              detail. Whether you join us for a quick lunch, a cozy dinner, or a
+              celebration with friends, we aim to create moments that are
+              memorable and comforting.
             </p>
           </article>
         </div>
@@ -158,7 +171,16 @@ export default function Home() {
                 description={item.description}
                 price={item.price}
                 image={item.imageUrl ?? ""}
-                onAddToCart={() => console.log("Added")}
+                onAddToCart={() =>
+                  addToCart({
+                    id: item._id,
+                    name: item.name,
+                    price: item.price,
+                    image: item.imageUrl ?? "",
+                    quantity: 1,
+                    description: item.description,
+                  })
+                }
               />
             ))}
           </div>
