@@ -1,0 +1,9 @@
+.logout-button {
+  text-decoration: none;
+  color: #dfd8c9;
+  cursor: pointer;
+}
+.logout-button:hover {
+  color: #e87461;
+  transition-duration: 200ms;
+}

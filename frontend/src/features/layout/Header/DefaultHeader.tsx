@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import "../../../components/Header/header.css";
-import { useAuth } from "../../../context/AuthContext";
-import Button from "../../../components/Button/Button";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useAuthStatus } from "../../hooks/useAuthStatus";
+import { useCart } from "../../cart/useCart";
 
 export default function DefaultHeader({
   isMenuOpen,
@@ -10,7 +11,8 @@ export default function DefaultHeader({
   isMenuOpen: boolean;
   onToggleMenu: () => void;
 }) {
-  const { isLoggedIn } = useAuth();
+  const { loading, isLoggedIn } = useAuthStatus();
+  const { totalQuantity } = useCart();
   return (
     <header className="header-container-default">
       {/* MOBILE */}
@@ -34,12 +36,21 @@ export default function DefaultHeader({
               <h1>Menu</h1>
             </Link>
 
-            <Link to={"/cart"}>
-              <h1>Cart</h1>
-            </Link>
-            <Link to={"/login"}>
-              {!isLoggedIn && <Button type="button" text="Login | Register" />}
-              {isLoggedIn && <Button type="button" text="Profile" />}
+            {loading ? null : isLoggedIn ? (
+              <Link to={"/previous-orders"}>
+                <h1>Profile</h1>
+              </Link>
+            ) : (
+              <Link to={"/login"}>
+                <h1>Login | Register</h1>
+              </Link>
+            )}
+
+            <Link to={"/cart"} className="cart-icon-wrapper">
+              <ShoppingCartIcon sx={{ fontSize: 30, color: "#dfd8c9" }} />
+              {totalQuantity > 0 && (
+                <span className="cart-badge">{totalQuantity}</span>
+              )}
             </Link>
           </nav>
         </div>
