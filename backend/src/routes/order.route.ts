@@ -89,44 +89,29 @@ router.get(
 /*Kund avbryter sin egen order det är endast PENDING*/
 router.post(
   "/:id/cancel",
-  optionalAuthJwt,
+  optionalAuthJwt, // kan vara kvar, men används inte i logiken
   async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
-      const { customerPhone } = req.body as { customerPhone?: string };
-
       const order = await Order.findById(req.params.id);
+
       if (!order) {
         return res.status(404).json({ message: "Order not found" });
       }
 
-      if (order.customerId) {
-        if (!req.user || order.customerId.toString() !== req.user.id) {
-          return res.status(403).json({ message: "Not your order" });
-        }
-      } else {
-        if (!customerPhone) {
-          return res.status(400).json({
-            message: "Phone number is required to cancel guest order",
-          });
-        }
-
-        if (!order.customerPhone || order.customerPhone !== customerPhone) {
-          return res.status(403).json({
-            message: "Phone number does not match this order",
-          });
-        }
-      }
+      console.log(
+        "Cancel request for order",
+        order._id.toString(),
+        "current status:",
+        order.status
+      );
 
       if (order.status !== "PENDING") {
-        return res
-          .status(400)
-          .json({ message: "Order can no longer be cancelled" });
+        return res.status(400).json({
+          message: `Order can no longer be cancelled (status is ${order.status})`,
+        });
       }
 
       order.status = "CANCELLED";
-      if (order.paymentStatus === "PAID") {
-        order.paymentStatus = "REFUNDED";
-      }
       await order.save();
 
       return res.json(order);
@@ -174,7 +159,7 @@ router.put("/:id", async (req: Request, res: Response, next: NextFunction) => {
         .json({ message: "Updated items are required" });
     }
 
-    // samma logik som i POST / – plocka priser från meny, räkna total
+    // samma logik som i POST / plocka priser från meny, räkna total
     const itemIds = items.map((i) => i.menuItemId);
     const menuItems = await MenuItem.find({ _id: { $in: itemIds } });
 
