@@ -8,7 +8,7 @@ import SummaryBox from "../../components/SummaryBox/SummaryBox";
 import { validateOrder } from "../../utils/validateOrder";
 import { useCheckoutStore } from "../../features/review/reviewStore";
 import { useCart } from "../../features/cart/useCart";
-import { createOrder, updateOrder } from "../../api/orders";
+import { createOrder, updateOrder } from "../../api/order";
 
 function Review() {
   const navigate = useNavigate();

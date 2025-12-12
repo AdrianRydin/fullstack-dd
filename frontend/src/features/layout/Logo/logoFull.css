@@ -32,7 +32,7 @@
 
 @media (min-width: 576px) {
   .logo-full {
-  height: 13rem;
+  height: 14rem;
 }
 .logo-bamboo {
   height: 11rem;
@@ -40,12 +40,12 @@
 .logo-bamboo-left {
   top: 0;
   left: 0;
-  transform: translate(-42%, -10%);
+  transform: translate(-45%, -10%);
 }
 .logo-bamboo-right {
   right: 0;
   bottom: 0;
-  transform: translate(41%, 65%);
+  transform: translate(45%, 65%);
 }
 }
 

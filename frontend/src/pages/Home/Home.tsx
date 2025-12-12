@@ -14,23 +14,39 @@ import type { MenuItem } from "../../api/menu";
 export default function Home() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
 
-  useEffect(() => {
+   useEffect(() => {
     getMenu()
       .then((items) => {
-        setMenuItems(items);
+        const sorted = [...items].sort((a, b) => {
+          const catA = (a.category || "").toLowerCase();
+          const catB = (b.category || "").toLowerCase();
+
+          const isDrinkA = catA === "drinks";
+          const isDrinkB = catB === "drinks";
+
+          if (isDrinkA && !isDrinkB) return 1;
+          if (!isDrinkA && isDrinkB) return -1;
+          return 0;
+        });
+
+        setMenuItems(sorted);
       })
       .catch((err) => {
         console.error("Failed to load menu on Home:", err);
       });
   }, []);
 
+  const foodItems = menuItems.filter(
+    (item) => (item.category || "").toLowerCase() !== "drinks"
+  );
 
-  const previewMenu = menuItems.slice(0, 3);
+
+  const previewMenu = foodItems.slice(0, 3);
   // Om vi vill använda tags:
   // const favoritesItems = menuItems.filter((i) => i.tags?.includes("favorite"));
   // const popularItems = menuItems.filter((i) => i.tags?.includes("popular"));
-  const favoritesItems = menuItems.slice(0, 3);
-  const popularItems = menuItems.slice(3, 6);
+  const favoritesItems = foodItems.slice(0, 3);
+  const popularItems = foodItems.slice(3, 6);
 
   return (
     <main className="home-page">

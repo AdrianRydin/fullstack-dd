@@ -62,7 +62,7 @@ export default function MenuHeader({
             <h1>Menu</h1>
           </Link>
 
-          <Link to={"/login"}>
+          <Link to={"/register"}>
             {!isLoggedIn && <Button type="button" text="Login | Register" />}
             {isLoggedIn && <Button type="button" text="Profile" />}
           </Link>

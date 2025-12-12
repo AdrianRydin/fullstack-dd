@@ -37,7 +37,7 @@ export default function DefaultHeader({
             <Link to={"/cart"}>
               <h1>Cart</h1>
             </Link>
-            <Link to={"/login"}>
+            <Link to={"/register"}>
               {!isLoggedIn && <Button type="button" text="Login | Register" />}
               {isLoggedIn && <Button type="button" text="Profile" />}
             </Link>
