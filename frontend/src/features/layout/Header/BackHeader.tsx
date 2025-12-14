@@ -2,6 +2,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
 import HeaderLayout from "./HeaderLayout";
 import "./backheader.css";
+
 import { useNavigate } from "react-router-dom";
 
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -59,23 +60,27 @@ export default function BackHeader({
           <Link to={"/menu"}>
             <h1>Menu</h1>
           </Link>
-
-          {loading ? null : isLoggedIn ? (
-            <Link to={"/previous-orders"}>
-              <h1>Profile</h1>
+          <aside className="header-desktop-cart-container">
+            <Link to={"/cart"} className="cart-icon-wrapper">
+              <ShoppingCartIcon sx={{ fontSize: 30, color: "#dfd8c9" }} />
+              {totalQuantity > 0 && (
+                <span className="cart-badge">{totalQuantity}</span>
+              )}
             </Link>
-          ) : (
-            <Link to={"/login"}>
-              <h1>Login | Register</h1>
-            </Link>
-          )}
-
-          <Link to={"/cart"} className="cart-icon-wrapper">
-            <ShoppingCartIcon sx={{ fontSize: 30, color: "#dfd8c9" }} />
-            {totalQuantity > 0 && (
-              <span className="cart-badge">{totalQuantity}</span>
+            {loading ? null : isLoggedIn ? (
+              <Link to={"/previous-orders"}>
+                <aside className="login-button">
+                  <h1>Profile</h1>
+                </aside>
+              </Link>
+            ) : (
+              <Link to={"/login"}>
+                <aside className="login-button">
+                  <h1>Login | Register</h1>
+                </aside>
+              </Link>
             )}
-          </Link>
+          </aside>
         </nav>
       </section>
     </HeaderLayout>

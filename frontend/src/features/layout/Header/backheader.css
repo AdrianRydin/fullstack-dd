@@ -18,7 +18,10 @@
   gap: 4rem;
   font-size: 16px;
   align-items: center;
+  width: 70%;
+  justify-content: space-around;
 }
+
 .header-desktop-link-container a {
   color: #dfd8c9;
   font-weight: 500;
@@ -32,6 +35,7 @@
   font-size: 24px;
   margin: 0;
   font-weight: 400;
+  width: fit-content;
 }
 @media (min-width: 576px) {
   .header-mobile {
@@ -41,5 +45,31 @@
   .header-desktop {
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
+  }
+  .header-desktop-link-container {
+    gap: 2rem;
+  }
+  .header-desktop-link-container h1 {
+    font-size: 18px;
+    white-space: nowrap;
+  }
+  .cart-icon-wrapper svg {
+    font-size: 24px;
+  }
+  .back-arrow svg {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .header-desktop-link-container h1 {
+    font-size: 24px;
+  }
+  .cart-icon-wrapper svg {
+    font-size: 30px;
+  }
+  .back-arrow svg {
+    font-size: 40px;
   }
 }

@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Menu from "./pages/Menu/Menu";
 import Cart from "./pages/Cart/Cart";
@@ -25,9 +25,17 @@ import { useAuthStatus } from "./features/hooks/useAuthStatus";
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isLoggedIn, user } = useAuthStatus();
+  const location = useLocation();
+
+  const overlayVariant: "public" | "profile" | "admin" =
+    user?.role === "ADMIN"
+      ? "admin"
+      : isLoggedIn && location.pathname.startsWith("/previous-orders")
+      ? "profile"
+      : "public";
 
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       <Header
         isMenuOpen={isMenuOpen}
@@ -40,6 +48,7 @@ function App() {
         onClose={() => setIsMenuOpen(false)}
         isLoggedIn={isLoggedIn}
         user={user}
+        variant={overlayVariant}
       />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -60,7 +69,7 @@ function App() {
       </Routes>
 
       <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 
