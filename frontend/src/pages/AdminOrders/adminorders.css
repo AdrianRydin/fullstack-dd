@@ -7,7 +7,6 @@
 
 .order-container {
   position: relative;
-  margin-top: 60px;
   display: flex;
   flex-direction: column;
 }
@@ -28,7 +27,6 @@
   display: flex;
   gap: 12px;
   margin-top: 16px;
-  margin-bottom: 24px;
 }
 
 .orders-filter-button {
