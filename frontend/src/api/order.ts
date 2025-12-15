@@ -5,6 +5,8 @@ export interface OrderItemResponse {
   name: string
   price: number
   qty: number
+  description?: string
+  img?: string
 }
 
 export type OrderStatus = "PENDING" | "LOCKED" | "READY" | "CANCELLED"

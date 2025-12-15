@@ -18,6 +18,10 @@ export function getMenu() {
   return apiFetch<MenuItem[]>("/menu")
 }
 
+export function getMenuItem(menuItemId: string) {
+  return apiFetch<MenuItem>(`/menu/${menuItemId}`)
+}
+
 export function createMenuItem(data: NewMenuItem, token: string) {
   return apiFetch<MenuItem>(
     "/menu",
