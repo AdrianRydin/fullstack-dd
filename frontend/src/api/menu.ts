@@ -29,6 +29,16 @@ export function createMenuItem(data: NewMenuItem) {
     method: "POST",
     body: JSON.stringify(data),
   });
+export function getMenuItem(menuItemId: string) {
+  return apiFetch<MenuItem>(`/menu/${menuItemId}`)
+}
+
+export function createMenuItem(data: NewMenuItem, token: string) {
+  return apiFetch<MenuItem>(
+    "/menu",
+    { method: "POST", body: JSON.stringify(data) },
+    token
+  )
 }
 
 export function updateMenuItem(

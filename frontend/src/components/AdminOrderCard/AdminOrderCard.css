@@ -1,12 +1,10 @@
 p {
   font-weight: 500;
+  margin: 0;
 }
 
 .admin-order-card-container {
-  position: relative;
   width: 80vw;
-  height: 200px;
-  box-sizing: border-box;
   background: var(--glass-bg);
   border-radius: 24px;
   border: 1px solid var(--glass-border);
@@ -15,33 +13,28 @@ p {
   box-shadow: var(--glass-shadow);
   padding: 2rem 1.5rem 1.5rem;
   color: #f4f4f4;
-  text-align: center;
-  margin: 2rem auto;
-
+  margin: 1rem auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
 }
 
-.admin-order-card__info-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 80%;
-  gap: 0.5rem;
-}
 .admin-order-card__info-container-text {
   display: flex;
+  text-wrap: wrap;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
+  gap: 0.5rem;
+}
+
+.admin-order-card-button-container {
+  margin-top: 1rem;
 }
 
 .button {
   width: clamp(100px, 50vw, 200px);
   font-size: clamp(16px, 8vw, 20px);
   padding: clamp(8px, 3vw, 16px) 20px;
-  margin-top: auto;
 }
 
 /* Responsive Design with min screen 576px */
@@ -52,12 +45,11 @@ p {
     align-items: center;
     justify-content: center;
   }
-  .admin-order-card-container :nth-child(1) {
+
+  .admin-order-card-container > .admin-order-card__info-container-text {
     width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
+
   .button {
     margin-top: 0;
   }
