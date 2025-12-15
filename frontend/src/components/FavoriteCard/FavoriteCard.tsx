@@ -7,14 +7,16 @@ export interface Dish {
   name: string;
   price: number;
   imageUrl?: string;
+  description?: string;
 }
 
 interface FavoriteCardProps {
   favorites: Dish[];
   popular: Dish[];
+  onAddToCart: (dish: Dish) => void;
 }
 
-const FavoriteCard: FC<FavoriteCardProps> = ({ favorites, popular }) => {
+const FavoriteCard: FC<FavoriteCardProps> = ({ favorites, popular, onAddToCart }) => {
   const hasFavorites = favorites.length > 0;
   const listToShow = hasFavorites ? favorites : popular;
 
@@ -41,6 +43,7 @@ const FavoriteCard: FC<FavoriteCardProps> = ({ favorites, popular }) => {
               type="button"
               className="favorite-card__button"
               aria-label="Add to cart"
+              onClick={() => onAddToCart(dish)}
             >
               <img src={cartIcon} alt="" className="favorite-card__icon" />
             </button>
