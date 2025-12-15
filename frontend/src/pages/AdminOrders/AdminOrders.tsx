@@ -13,14 +13,6 @@ const FILTERS: { id: FilterId; label: string }[] = [
   { id: "ready", label: "Ready" },
 ]
 
-function matchesFilter(status: OrderStatus, filter: FilterId) {
-  if (filter === "all") return true
-  if (filter === "pending") return status === "PENDING"
-  if (filter === "locked") return status === "LOCKED"
-  if (filter === "ready") return status === "READY"
-  return true
-}
-
 interface OrdersSectionProps {
   title: string
   status: OrderStatus
@@ -68,7 +60,13 @@ export default function AdminOrders() {
     const fetchOrders = async () => {
       try {
         const data = await getAllOrders()
-        setOrders(data)
+
+        const sorted = [...data].sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        )
+
+        setOrders(sorted)
       } catch (error) {
         console.error("Kunde inte hämta orders", error)
       }
