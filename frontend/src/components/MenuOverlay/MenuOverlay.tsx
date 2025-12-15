@@ -50,7 +50,7 @@ export default function Menu({ isOpen, onClose }: MenuOverlayProps) {
       <aside className="menu-panel" onClick={(e) => e.stopPropagation()}>
         <MenuLink to="/" label="Home" onClose={onClose} />
         <MenuLink to="/menu" label="Menu" onClose={onClose} />
-        <MenuLink to="/register" label="Login/Register" onClose={onClose} />
+        <MenuLink to="/login" label="Login/Register" onClose={onClose} />
         <MenuLink to="/cart" label="Cart" onClose={onClose} />
         <MenuLink to="/previous-orders" label="Profile" onClose={onClose} />
       </aside>
