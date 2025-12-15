@@ -78,3 +78,19 @@ export function cancelOrder(orderId: string, token?: string) {
 export function getMyOrders() {
   return apiFetch<OrderResponse[]>("/orders/my")
 }
+
+export function getAllOrders() {
+  return apiFetch<OrderResponse[]>("/orders")
+}
+
+export async function lockOrder(orderId: string) {
+  return apiFetch<OrderResponse>(`/orders/${orderId}/lock`, {
+    method: "POST",
+  })
+}
+
+export async function markOrderReady(orderId: string) {
+  return apiFetch<OrderResponse>(`/orders/${orderId}/ready`, {
+    method: "POST",
+  })
+}

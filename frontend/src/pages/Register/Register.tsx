@@ -84,18 +84,6 @@ export default function Register() {
                 Register
               </button>
             </section>
-
-            <p className="register-text">
-              Already a member?
-              <span
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/login")}
-              >
-                Login here
-              </span>
-            </p>
-
-            <span className="bottom-line"></span>
           </section>
         </section>
 
