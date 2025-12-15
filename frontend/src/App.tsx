@@ -1,30 +1,30 @@
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Menu from "./pages/Menu/Menu";
-import Cart from "./pages/Cart/Cart";
-import About from "./pages/About/About";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
-import Receipt from "./pages/Receipt/Receipt";
-import Header from "./components/Header/Header";
-import MenuOverlay from "./components/MenuOverlay/MenuOverlay";
-import { useState } from "react";
-import Footer from "./features/layout/Footer/Footer";
-import Review from "./pages/Review/Review";
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-import PreviousOrdersPage from "./pages/PreviousOrders/PreviousOrders";
-import OrderDetailsPage from "./pages/OrderDetails/OrderDetails";
-import AdminOrders from "./features/authentication/pages/AdminOrders/AdminOrders";
-import AdminInventoryPage from "./pages/AdminInventory/AdminInventory";
-import AdminDashboardPage from "./pages/AdminDashboard/AdminDashboard";
-import AdminMenu from "./pages/AdminMenu/AdminMenu";
-import AdminAdd from "./pages/AdminAdd/AdminAdd";
-import { useAuthStatus } from "./features/hooks/useAuthStatus";
+import "./App.css"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from "./pages/Home/Home"
+import Menu from "./pages/Menu/Menu"
+import Cart from "./pages/Cart/Cart"
+import About from "./pages/About/About"
+import Login from "./pages/Login/Login"
+import Register from "./pages/Register/Register"
+import Receipt from "./pages/Receipt/Receipt"
+import Header from "./components/Header/Header"
+import MenuOverlay from "./components/MenuOverlay/MenuOverlay"
+import { useState } from "react"
+import Footer from "./features/layout/Footer/Footer"
+import Review from "./pages/Review/Review"
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
+import PreviousOrdersPage from "./pages/PreviousOrders/PreviousOrders"
+import OrderDetailsPage from "./pages/OrderDetails/OrderDetails"
+import AdminOrders from "./pages/AdminOrders/AdminOrders"
+import AdminInventoryPage from "./pages/AdminInventory/AdminInventory"
+import AdminDashboardPage from "./pages/AdminDashboard/AdminDashboard"
+import AdminMenu from "./pages/AdminMenu/AdminMenu"
+import AdminAdd from "./pages/AdminAdd/AdminAdd"
+import { useAuthStatus } from "./features/hooks/useAuthStatus"
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isLoggedIn, user } = useAuthStatus();
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { isLoggedIn, user } = useAuthStatus()
 
   return (
     <BrowserRouter>
@@ -61,7 +61,7 @@ function App() {
 
       <Footer />
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
