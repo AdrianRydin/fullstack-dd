@@ -4,11 +4,10 @@
   top: 0;
   left: 0;
   right: 0;
-
+  width: 100%;
   height: 5rem;
   padding: 0 1rem;
   box-sizing: border-box;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,7 +23,6 @@
   height: 5rem;
   padding-right: 3rem;
   box-sizing: border-box;
-
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -34,9 +32,8 @@
 
 .header-inner {
   width: 100%;
-  max-width: 600px;
   margin: 0 auto;
-
+  white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,7 +41,6 @@
 
 .header-inner-default {
   width: 100%;
-  max-width: 600px;
   margin: 0 auto;
 
   display: flex;
@@ -107,4 +103,37 @@
   bottom: auto;
   top: 50%;
   transform: translateY(-50%) rotate(-45deg);
+}
+
+.header-desktop-cart-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: auto;
+  gap: 1rem;
+}
+
+.login-button {
+  border: 1px solid #dfd8c9;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 576px) {
+  .header-mobile {
+    display: block;
+  }
+  .header-desktop {
+    display: none;
+  }
+
+  .header-container-default {
+    justify-content: space-between; /* istället för flex-end */
+    padding: 0 1rem; /* ha padding på båda sidor */
+  }
+  .header-inner-default {
+    justify-content: center;
+  }
 }

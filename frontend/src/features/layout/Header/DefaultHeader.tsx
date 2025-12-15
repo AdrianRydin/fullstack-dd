@@ -32,26 +32,38 @@ export default function DefaultHeader({
       <section className="header-desktop">
         <div className="header-inner-default">
           <nav className="header-desktop-link-container">
+            <Link to={"/"}>
+              <h1>Home</h1>
+            </Link>
             <Link to={"/menu"}>
               <h1>Menu</h1>
             </Link>
-
-            {loading ? null : isLoggedIn ? (
-              <Link to={"/previous-orders"}>
-                <h1>Profile</h1>
-              </Link>
-            ) : (
-              <Link to={"/login"}>
-                <h1>Login | Register</h1>
-              </Link>
-            )}
-
-            <Link to={"/cart"} className="cart-icon-wrapper">
-              <ShoppingCartIcon sx={{ fontSize: 30, color: "#dfd8c9" }} />
-              {totalQuantity > 0 && (
-                <span className="cart-badge">{totalQuantity}</span>
-              )}
+            <Link to={"/about"}>
+              <h1>About us</h1>
             </Link>
+
+            <aside className="header-desktop-cart-container">
+              <Link to={"/cart"} className="cart-icon-wrapper">
+                <ShoppingCartIcon sx={{ fontSize: 30, color: "#dfd8c9" }} />
+                {totalQuantity > 0 && (
+                  <span className="cart-badge">{totalQuantity}</span>
+                )}
+              </Link>
+
+              {loading ? null : isLoggedIn ? (
+                <Link to={"/previous-orders"}>
+                  <aside className="login-button">
+                    <h1>Profile</h1>
+                  </aside>
+                </Link>
+              ) : (
+                <Link to={"/login"}>
+                  <aside className="login-button">
+                    <h1>Login | Register</h1>
+                  </aside>
+                </Link>
+              )}
+            </aside>
           </nav>
         </div>
       </section>

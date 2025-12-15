@@ -3,15 +3,56 @@ import { useEffect, useRef } from "react";
 import { animate } from "motion";
 import { MenuLink } from "../../features/layout/MenuLink/MenuLink";
 import type { AuthUser } from "../../types/User";
+import { useLogout } from "../../features/hooks/useLogout";
 
 type MenuOverlayProps = {
   isOpen: boolean;
   onClose: () => void;
   isLoggedIn: boolean;
   user: AuthUser | null;
+  variant: "public" | "profile" | "admin";
 };
 
-export default function Menu({ isOpen, onClose }: MenuOverlayProps) {
+function PublicMenu({
+  onClose,
+  isLoggedIn,
+}: {
+  onClose: () => void;
+  isLoggedIn: boolean;
+}) {
+  return (
+    <>
+      <MenuLink to="/" label="Home" onClose={onClose} />
+      <MenuLink to="/menu" label="Menu" onClose={onClose} />
+      <MenuLink to="/register" label="Login/Register" onClose={onClose} />
+      <MenuLink to="/cart" label="Cart" onClose={onClose} />
+      {isLoggedIn ? (
+        <MenuLink to="/previous-orders" label="Profile" onClose={onClose} />
+      ) : (
+        <MenuLink to="/login" label="Login | Register" onClose={onClose} />
+      )}
+    </>
+  );
+}
+function ProfileMenu({ onClose }: { onClose: () => void }) {
+  const logout = useLogout();
+  return (
+    <>
+      <MenuLink to="/" label="Home" onClose={onClose} />
+      <MenuLink to="/menu" label="Menu" onClose={onClose} />
+      <MenuLink to="/register" label="Login/Register" onClose={onClose} />
+      <MenuLink to="/cart" label="Cart" onClose={onClose} />
+      <MenuLink to="/login" label="Logout" onClose={onClose} onClick={logout} />
+    </>
+  );
+}
+
+export default function Menu({
+  isOpen,
+  onClose,
+  variant,
+  isLoggedIn,
+}: MenuOverlayProps) {
   const containerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -48,11 +89,10 @@ export default function Menu({ isOpen, onClose }: MenuOverlayProps) {
   return (
     <section className="menu-container" ref={containerRef} onClick={onClose}>
       <aside className="menu-panel" onClick={(e) => e.stopPropagation()}>
-        <MenuLink to="/" label="Home" onClose={onClose} />
-        <MenuLink to="/menu" label="Menu" onClose={onClose} />
-        <MenuLink to="/login" label="Login/Register" onClose={onClose} />
-        <MenuLink to="/cart" label="Cart" onClose={onClose} />
-        <MenuLink to="/previous-orders" label="Profile" onClose={onClose} />
+        {variant === "public" && (
+          <PublicMenu onClose={onClose} isLoggedIn={isLoggedIn} />
+        )}
+        {variant === "profile" && <ProfileMenu onClose={onClose} />}
       </aside>
     </section>
   );
