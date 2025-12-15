@@ -1,8 +1,8 @@
-import "../CartItemCard/CartItemCard.css";
-import { type SushiRoll } from "../../pages/Cart/Cart";
+import "../CartItemCard/CartItemCard.css"
+import type { CartItem } from "../../features/cart/cartTypes"
 
 interface OrderItemCardProps {
-  item: SushiRoll;
+  item: CartItem
 }
 
 function OrderItemCard({ item }: OrderItemCardProps) {
@@ -18,7 +18,7 @@ function OrderItemCard({ item }: OrderItemCardProps) {
         </article>
       </section>
     </section>
-  );
+  )
 }
 
-export default OrderItemCard;
+export default OrderItemCard
