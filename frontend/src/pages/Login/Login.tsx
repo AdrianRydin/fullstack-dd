@@ -4,7 +4,7 @@ import topLeftImg from "../../assets/bambo1.png";
 import bottomRightImg from "../../assets/bambo2.png";
 import { loginUser } from "../../api/auth";
 import { useAuthStore } from "../../features/authentication/store/authStore";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,7 +12,6 @@ export default function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
-  
 
   const handleLogin = async () => {
     setError("");
@@ -70,6 +69,16 @@ export default function Login() {
         <button className="auth-btn" onClick={handleLogin}>
           Login
         </button>
+        <p className="register-text">
+          Want to register?
+          <span
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/register")}
+          >
+            Register here
+          </span>
+        </p>
+        <span className="bottom-line"></span>
       </section>
       <img
         src={bottomRightImg}

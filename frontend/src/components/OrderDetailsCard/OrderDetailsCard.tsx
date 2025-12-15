@@ -1,15 +1,19 @@
 import "../../components/ReceiptComponent/receiptComponent.css"
-import logo from "../../assets/logo-full-transparent.png";
-import { useNavigate } from "react-router-dom";
-import Button from "../Button/Button";
-import type { OrderItemResponse, OrderStatus } from "../../api/order";
+import logo from "../../assets/logo-full-transparent.png"
+import { useNavigate } from "react-router-dom"
+
+import type { OrderItemResponse, OrderStatus } from "../../api/order"
+import { getMenuItem } from "../../api/menu"
+import { useCart } from "../../features/cart/useCart"
+
+import Button from "../Button/Button"
 
 interface OrderDetailsReceiptProps {
-  orderId: string;
-  items: OrderItemResponse[];
-  totalPrice: number;
-  createdAt: string;
-  status: OrderStatus;
+  orderId: string
+  items: OrderItemResponse[]
+  totalPrice: number
+  createdAt: string
+  status: OrderStatus
 }
 
 function OrderDetailsReceipt({
@@ -19,10 +23,11 @@ function OrderDetailsReceipt({
   createdAt,
   status,
 }: OrderDetailsReceiptProps) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const { clear, addToCart } = useCart()
 
-  const shortOrderNumber = orderId?.slice(-6)?.toUpperCase() ?? "??????";
-  const dateString = new Date(createdAt).toLocaleString();
+  const shortOrderNumber = orderId?.slice(-6)?.toUpperCase() ?? "??????"
+  const dateString = new Date(createdAt).toLocaleString()
 
   const statusConfig = {
     PENDING: {
@@ -41,7 +46,30 @@ function OrderDetailsReceipt({
       label: "Status: Avbruten",
       className: "receipt-status--cancelled",
     },
-  }[status];
+  }[status]
+
+  const handleOrderAgain = async () => {
+    clear()
+
+    for (const item of items) {
+      try {
+        const menuItem = await getMenuItem(item.menuItemId)
+
+        addToCart({
+          id: menuItem._id,
+          name: menuItem.name,
+          price: menuItem.price,
+          quantity: item.qty,
+          description: menuItem.description,
+          image: menuItem.imageUrl ?? "",
+        })
+      } catch (err) {
+        console.error("Failed to fetch menu item", err)
+      }
+    }
+
+    navigate("/cart")
+  }
 
   return (
     <section className="receipt-component">
@@ -62,21 +90,16 @@ function OrderDetailsReceipt({
         <h3 className="receipt-subheading">Your order</h3>
         {items.map((item) => (
           <p key={item.menuItemId} className="receipt-text">
-            {item.name} × {item.qty} —{" "}
-            {(item.price * item.qty).toFixed(0)} kr
+            {item.name} × {item.qty} — {(item.price * item.qty).toFixed(0)} kr
           </p>
         ))}
 
         <h2 className="receipt-total">Total: {totalPrice} kr</h2>
       </article>
-
-      {/* 👉 Enda knappen här */}
-      <Button
-        text="My orders"
-        onClick={() => navigate("/previous-orders")}
-      />
+      <Button text="Order Again" onClick={handleOrderAgain}></Button>
+      <Button text="My orders" onClick={() => navigate("/previous-orders")} />
     </section>
-  );
+  )
 }
 
-export default OrderDetailsReceipt;
+export default OrderDetailsReceipt

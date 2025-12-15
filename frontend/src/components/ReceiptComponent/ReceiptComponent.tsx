@@ -8,6 +8,7 @@ import { getOrder, cancelOrder } from "../../api/order";
 import type { OrderStatus } from "../../api/order";
 import { useCartStore } from "../../features/cart/cartStore";
 import { useAuthStore } from "../../features/authentication/store/authStore";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
 
 interface ReceiptComponentProps {
   orderId: string;
@@ -28,35 +29,34 @@ function ReceiptComponent({
 }: ReceiptComponentProps) {
   const navigate = useNavigate();
   const [status, setStatus] = useState<OrderStatus>(initialStatus);
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [isCancelling, setIsCancelling] = useState(false);
   const setCartItems = useCartStore((s) => s.setItems);
-  const {token}=useAuthStore()
+  const { token } = useAuthStore();
 
-  // hämta status från backend
   useEffect(() => {
-  let cancelled = false;
+    let cancelled = false;
 
-  async function fetchStatus() {
-    try {
-      const order = await getOrder(orderId, token || undefined);
-      if (!cancelled) {
-        setStatus(order.status);
+    async function fetchStatus() {
+      try {
+        const order = await getOrder(orderId, token || undefined);
+        if (!cancelled) {
+          setStatus(order.status);
+        }
+      } catch (err) {
+        console.error("Failed to fetch order status", err);
       }
-    } catch (err) {
-      console.error("Failed to fetch order status", err);
     }
-  }
+    fetchStatus();
+    const intervalId = setInterval(fetchStatus, 5000);
 
-  fetchStatus();
-  const intervalId = setInterval(fetchStatus, 5000);
+    return () => {
+      cancelled = true;
+      clearInterval(intervalId);
+    };
+  }, [orderId, token]);
 
-  return () => {
-    cancelled = true;
-    clearInterval(intervalId);
-  };
-}, [orderId, token]);
-
-  const shortOrderNumber =
-    orderId?.slice(-6)?.toUpperCase() ?? "??????";
+  const shortOrderNumber = orderId?.slice(-6)?.toUpperCase() ?? "??????";
 
   const dateString = createdAt
     ? new Date(createdAt).toLocaleString()
@@ -76,7 +76,7 @@ function ReceiptComponent({
       className: "receipt-status--ready",
     },
     CANCELLED: {
-      label: "Status: Canceled",
+      label: "Status: Cancelled",
       className: "receipt-status--cancelled",
     },
   }[status];
@@ -87,26 +87,21 @@ function ReceiptComponent({
   };
 
   const handleMyOrdersClick = () => {
-  navigate("/previous-orders");
-};
+    navigate("/previous-orders");
+  };
 
-const handleCancelOrder = async () => {
-  const confirmed = window.confirm(
-    "Are you sure you want to cancel this order?"
-  );
-  if (!confirmed) return;
-
-  try {
-    const updated = await cancelOrder(orderId, token || undefined);
-    setStatus(updated.status); // blir "CANCELLED"
-    alert("Your order has been cancelled.");
-  } catch (err) {
-    console.error("Failed to cancel order", err);
-    alert(
-      "Could not cancel the order. It may already be locked or processed."
-    );
-  }
-};
+  const handleCancelOrder = async () => {
+    try {
+      setIsCancelling(true);
+      const updated = await cancelOrder(orderId, token || undefined);
+      setStatus(updated.status); // CANCELLED
+      setShowCancelModal(false);
+    } catch (err) {
+      console.error("Failed to cancel order", err);
+    } finally {
+      setIsCancelling(false);
+    }
+  };
 
   return (
     <section className="receipt-component">
@@ -134,15 +129,29 @@ const handleCancelOrder = async () => {
         <h2 className="receipt-total">Total: {totalPrice} kr</h2>
       </article>
 
-     {status === "PENDING" && (
+      {status === "PENDING" && (
         <>
           <Button text="Edit order" onClick={handleEditOrder} />
-          <Button text="Cancel order" onClick={handleCancelOrder} />
+          <Button
+            text="Cancel order"
+            onClick={() => setShowCancelModal(true)}
+          />
         </>
       )}
 
       <Button text="My orders" onClick={handleMyOrdersClick} />
       <Button text="Home" onClick={() => navigate("/")} />
+      {showCancelModal && (
+        <ConfirmModal
+          title="Cancel order?"
+          message="Your order has not been started yet. If you cancel now, this action cannot be undone."
+          confirmText="Yes, cancel order"
+          cancelText="Keep order"
+          isLoading={isCancelling}
+          onCancel={() => setShowCancelModal(false)}
+          onConfirm={handleCancelOrder}
+        />
+      )}
     </section>
   );
 }

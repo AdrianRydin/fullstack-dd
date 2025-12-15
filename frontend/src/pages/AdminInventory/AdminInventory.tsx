@@ -14,12 +14,16 @@ const categoryLookup: Record<string, string> = {
   cucumber: "Vegetables",
   avocado: "Vegetables",
   carrot: "Vegetables",
+  mango: "Vegetables",
+
+  "spicy mayo": "Condiments",
 
   "sparkling water": "Drinks",
   "sparkling cola drink": "Drinks",
   "strawberry sparkle drink": "Drinks",
   "vanilla fizz drink": "Drinks",
   "green tea": "Drinks",
+  "still water": "Drinks",
 }
 
 function groupByCategory(items: InventoryItem[]) {
@@ -51,10 +55,9 @@ function AdminInventoryPage() {
 
       {Object.entries(grouped).map(([category, items]) => (
         <section className="category-card" key={category}>
-          <h2 className="title">{category}</h2>
+          <h2 className="title title-category">{category}</h2>
 
           <section className="titles-wrapper">
-            <h3 className="title">Item</h3>
             <h3 className="title">Quantity</h3>
           </section>
 

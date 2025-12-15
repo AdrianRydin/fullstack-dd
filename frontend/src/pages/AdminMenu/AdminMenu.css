@@ -1,49 +1,262 @@
-.menu-title-wrapper-admin {
+
+.admin-menu-hero {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  margin: 3rem 0;
-  gap: 3rem;
+  align-items: center;
+  text-align: center;
+  gap: 1.4rem;
+  margin-bottom: 3rem;
 }
 
-.menu-title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #f5f0e6;
+.admin-menu-title {
   margin: 0;
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-main);
 }
 
-.menu-list {
-  display: grid;
-  gap: 2rem;
-  justify-content: center;
-  margin-top: 3rem;
-  padding: 0 2rem;
-  box-sizing: border-box;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+.admin-menu-dash {
+  width: 110px;
+  height: 2px;
+  border-radius: 999px;
+  background-color: #f07b63;
+}
+
+/* Knappen under strecket */
+.admin-add-button {
+  margin-top: 0.3rem;
 }
 
 .admin-add-button button {
-  border-radius: 0;
+  border-radius: 999px;
+  padding: 1rem 1.8rem;
+  font-size: 1.3rem;
+}
+
+.admin-menu-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.5rem 1rem;
+  z-index: 999;
+}
+
+.admin-menu-modal {
+  background-color: var(--text-main);
+  color: var(--bg-dark);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  width: min(600px, 100%);
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+.admin-menu-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-menu-modal-title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.admin-menu-modal-subtitle {
+  margin: 0.2rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.admin-menu-modal-close {
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* --- Form fields --- */
+.admin-menu-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.admin-menu-modal-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.admin-menu-modal-field span {
+  font-weight: 500;
+}
+
+.admin-menu-modal-field input,
+.admin-menu-modal-field textarea,
+.admin-menu-modal-field select {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #d0c5b5;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  outline: none;
+  background: #fffaf2;
+}
+
+.admin-menu-modal-field textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.admin-menu-modal-checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.admin-menu-modal-checkbox input {
+  width: auto;
+}
+
+.admin-menu-modal-actions {
+  margin-top: 1.4rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.admin-menu-modal-button {
+  border-radius: 999px;
+  padding: 0.45rem 1.3rem;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+}
+
+.admin-menu-modal-button--secondary {
+  background: transparent;
+  border: 1px solid #c3b7a7;
+  color: #5c4f3a;
+}
+
+.admin-menu-modal-button--primary {
+  background: #e87461;
+  color: #f5f0e6;
+}
+
+.admin-ingredients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.admin-ingredient-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.admin-ingredient-row input {
+  border-radius: 6px;
+  border: 1px solid #d0c5b5;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.85rem;
+  background: #fffaf2;
+}
+
+.admin-ingredient-remove {
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #b33a3a;
+  padding: 0.2rem 0.4rem;
+}
+
+.admin-ingredient-add {
+  margin-top: 0.5rem;
+  border-radius: 999px;
+  border: 1px dashed #c3b7a7;
+  padding: 0.3rem 0.9rem;
+  background: transparent;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .admin-menu-modal-backdrop {
+    padding: 1rem 0.75rem;
+    align-items: flex-start;
+  }
+
+  .admin-menu-modal {
+    width: 100%;
+    max-height: calc(100vh - 2rem);
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+  }
+
+  .admin-menu-modal-title {
+    font-size: 1.1rem;
+  }
+
+  .admin-menu-modal-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .admin-menu-modal-form input,
+  .admin-menu-modal-form textarea,
+  .admin-menu-modal-form select {
+    font-size: 0.85rem;
+  }
+
+  .admin-ingredient-row {
+    grid-template-columns: 2fr 1fr 1.2fr auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-menu-modal {
+    margin: 0 1rem;
+    padding: 1.4rem 1.2rem 1.2rem;
+  }
+.admin-ingredient-row {
+    grid-template-columns: 2fr 1fr 1fr auto;
+}
+  
 }
 
 @media (min-width: 576px) {
   .menu-list {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
-  .menu-title-wrapper-admin {
-    margin-top: 4rem;
-  }
 }
+
 @media (min-width: 1024px) {
+  .admin-menu-page {
+    padding-top: 5rem;
+  }
+
+  .admin-menu-title {
+    font-size: 2.5rem;
+  }
+
   .menu-list {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    margin: 6rem auto 4rem auto;
-  }
-  .menu-title-wrapper-admin {
-    margin-top: 5rem;
+    margin-bottom: 4rem;
   }
 }
