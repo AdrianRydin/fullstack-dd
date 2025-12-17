@@ -18,7 +18,7 @@ function OrderItemCard({ item }: OrderItemCardProps) {
         </article>
       </section>
     </section>
-  );
+  )
 }
 
-export default OrderItemCard;
+export default OrderItemCard

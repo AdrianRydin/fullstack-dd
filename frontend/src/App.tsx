@@ -23,16 +23,16 @@ import AdminAdd from "./pages/AdminAdd/AdminAdd";
 import { useAuthStatus } from "./features/hooks/useAuthStatus";
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isLoggedIn, user } = useAuthStatus();
-  const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { isLoggedIn, user } = useAuthStatus()
+  const location = useLocation()
 
   const overlayVariant: "public" | "profile" | "admin" =
     user?.role === "ADMIN"
       ? "admin"
       : isLoggedIn && location.pathname.startsWith("/previous-orders")
       ? "profile"
-      : "public";
+      : "public"
 
   return (
     <>
@@ -70,7 +70,7 @@ function App() {
 
       <Footer />
     </>
-  );
+  )
 }
 
 export default App

@@ -60,7 +60,13 @@ export default function AdminOrders() {
     const fetchOrders = async () => {
       try {
         const data = await getAllOrders()
-        setOrders(data)
+
+        const sorted = [...data].sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        )
+
+        setOrders(sorted)
       } catch (error) {
         console.error("Kunde inte hämta orders", error)
       }
