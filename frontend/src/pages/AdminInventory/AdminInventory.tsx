@@ -29,8 +29,6 @@ const categoryLookup: Record<string, string> = {
 function groupByCategory(items: InventoryItem[]) {
   const groups: Record<string, InventoryItem[]> = {}
 
-  console.log("Grouping items:", items)
-
   for (const item of items) {
     const category = categoryLookup[item.name.toLowerCase()] || "Uncategorized"
 
@@ -38,7 +36,6 @@ function groupByCategory(items: InventoryItem[]) {
     groups[category].push(item)
   }
 
-  console.log(groups)
   return groups
 }
 

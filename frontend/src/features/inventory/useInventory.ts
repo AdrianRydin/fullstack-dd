@@ -7,7 +7,6 @@ export function useInventory() {
   useEffect(() => {
     getInventory()
       .then((data) => {
-        console.log("API returned:", data)
         setItems(data)
       })
       .catch((err) => console.error("Failed to load inventory:", err))
