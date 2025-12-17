@@ -1,5 +1,6 @@
 import "./menucard.css";
 import Button from "../Button/Button";
+import addToCartIcon from "../../assets/add-to-cart.png";
 
 type MenuCardProps = {
   id?: string;
@@ -55,7 +56,7 @@ export function MenuCard({
               >
                 <span className="secondary-button-label">Add to cart</span>
                 <span className="secondary-button-icon">
-                  <img src="./src/assets/add-to-cart.png" alt="" />
+                  <img src={addToCartIcon} alt="" />
                 </span>
               </button>
             )

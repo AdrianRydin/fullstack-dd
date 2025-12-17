@@ -2,7 +2,7 @@ import "../CartItemCard/CartItemCard.css"
 import type { CartItem } from "../../features/cart/cartTypes"
 
 interface OrderItemCardProps {
-  item: CartItem
+  item: CartItem;
 }
 
 function OrderItemCard({ item }: OrderItemCardProps) {
