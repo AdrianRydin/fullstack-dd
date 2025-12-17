@@ -24,7 +24,7 @@ function PublicMenu({
     <>
       <MenuLink to="/" label="Home" onClose={onClose} />
       <MenuLink to="/menu" label="Menu" onClose={onClose} />
-      <MenuLink to="/register" label="Login/Register" onClose={onClose} />
+      <MenuLink to="/about" label="About us" onClose={onClose} />
       <MenuLink to="/cart" label="Cart" onClose={onClose} />
       {isLoggedIn ? (
         <MenuLink to="/previous-orders" label="Profile" onClose={onClose} />

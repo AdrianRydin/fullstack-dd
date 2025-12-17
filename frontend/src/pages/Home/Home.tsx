@@ -11,6 +11,7 @@ import FavoriteCard from "../../components/FavoriteCard/FavoriteCard";
 import { getMenu } from "../../api/menu";
 import type { MenuItem } from "../../api/menu";
 import { useCartStore } from "../../features/cart/cartStore";
+import restaurantImage from "../../assets/Resturant.png";
 
 export default function Home() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
@@ -137,7 +138,7 @@ export default function Home() {
         <h2 className="about-section-heading">About us</h2>
         <div className="about-row">
           <img
-            src="/src/assets/Resturant.png"
+            src={restaurantImage}
             alt="Picture of our restaurant"
             className="about-image"
           />

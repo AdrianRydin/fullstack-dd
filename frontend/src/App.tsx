@@ -15,7 +15,7 @@ import Review from "./pages/Review/Review";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import PreviousOrdersPage from "./pages/PreviousOrders/PreviousOrders";
 import OrderDetailsPage from "./pages/OrderDetails/OrderDetails";
-import AdminOrders from "./features/authentication/pages/AdminOrders/AdminOrders";
+import AdminOrders from "./pages/AdminOrders/AdminOrders";
 import AdminInventoryPage from "./pages/AdminInventory/AdminInventory";
 import AdminDashboardPage from "./pages/AdminDashboard/AdminDashboard";
 import AdminMenu from "./pages/AdminMenu/AdminMenu";
