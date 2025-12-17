@@ -1,4 +1,4 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { Router, Request, Response, NextFunction, CookieOptions } from "express";
 import bcrypt from "bcryptjs";
 import UserModel from "../models/User";
 import { authApiKey } from "../middlewares/authApiKey";
@@ -7,6 +7,16 @@ import { optionalAuthJwt, AuthRequest } from "../middlewares/authJwt";
 
 const router = Router();
 router.use(authApiKey);
+
+const isProd = process.env.NODE_ENV === "production";
+
+const cookieOptions: CookieOptions = {
+  httpOnly: true,
+  secure: isProd,
+  sameSite: isProd ? "none" : "lax",
+  maxAge: 1000 * 60 * 60 * 8,
+  path: "/",
+};
 
 router.post(
   "/register",
@@ -93,29 +103,18 @@ router.post(
       });
 
       const { passwordHash, ...safeUser } = user.toObject();
-      res.cookie("token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
-        maxAge: 1000 * 60 * 60 * 8,
-        path: "/",
-      });
+    res.cookie("token", token, cookieOptions);
+
       return res.json({ user: safeUser });
     } catch (err) {
       console.error("Error logging in user", err);
       return next(err);
+};
     }
-  }
 );
 
 router.post("/logout", (_req: Request, res: Response) => {
-  res.clearCookie("token", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-  });
-
+  res.clearCookie("token", cookieOptions);
   return res.json({ success: true });
 });
 

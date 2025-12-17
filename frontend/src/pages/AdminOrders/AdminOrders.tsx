@@ -13,14 +13,6 @@ const FILTERS: { id: FilterId; label: string }[] = [
   { id: "ready", label: "Ready" },
 ]
 
-function matchesFilter(status: OrderStatus, filter: FilterId) {
-  if (filter === "all") return true
-  if (filter === "pending") return status === "PENDING"
-  if (filter === "locked") return status === "LOCKED"
-  if (filter === "ready") return status === "READY"
-  return true
-}
-
 interface OrdersSectionProps {
   title: string
   status: OrderStatus
