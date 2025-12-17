@@ -4,6 +4,7 @@ import { animate } from "motion";
 import { MenuLink } from "../../features/layout/MenuLink/MenuLink";
 import type { AuthUser } from "../../types/User";
 import { useLogout } from "../../features/hooks/useLogout";
+import { AdminMenuLinks } from "../../features/layout/Header/Admin/AdminMenuLinks";
 
 type MenuOverlayProps = {
   isOpen: boolean;
@@ -89,10 +90,9 @@ export default function Menu({
   return (
     <section className="menu-container" ref={containerRef} onClick={onClose}>
       <aside className="menu-panel" onClick={(e) => e.stopPropagation()}>
-        {variant === "public" && (
-          <PublicMenu onClose={onClose} isLoggedIn={isLoggedIn} />
-        )}
+        {variant === "public" && <PublicMenu onClose={onClose} isLoggedIn={isLoggedIn} />}
         {variant === "profile" && <ProfileMenu onClose={onClose} />}
+        {variant === "admin" && <AdminMenuLinks onClose={onClose} />}
       </aside>
     </section>
   );
