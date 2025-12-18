@@ -105,7 +105,7 @@ router.post(
       const { passwordHash, ...safeUser } = user.toObject();
     res.cookie("token", token, cookieOptions);
 
-      return res.json({ user: safeUser });
+      return res.json({ user: safeUser, token });
     } catch (err) {
       console.error("Error logging in user", err);
       return next(err);

@@ -5,12 +5,24 @@ export interface AuthRequest extends Request {
   user?: JwtPayload | null
 }
 
+function getTokenFromRequest(req: Request): string | undefined {
+  const cookieToken = (req as any).cookies?.token as string | undefined;
+
+  const authHeader = req.headers.authorization;
+  const headerToken =
+    authHeader && authHeader.startsWith("Bearer ")
+      ? authHeader.slice(7)
+      : undefined;
+
+  return cookieToken || headerToken;
+}
+
 export const authJwt = (
   req: AuthRequest,
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.cookies?.token
+  const token = getTokenFromRequest(req);
 
   if (!token) {
     return res.status(401).json({ message: "No token provided" })
@@ -31,7 +43,7 @@ export const optionalAuthJwt = (
   _res: Response,
   next: NextFunction
 ) => {
-  const token = req.cookies?.token
+  const token = getTokenFromRequest(req);
 
   if (!token) {
     req.user = null
