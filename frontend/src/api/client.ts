@@ -9,9 +9,18 @@ export async function apiFetch<T>(
 
   headers.set("x-api-key", API_KEY);
 
-  if (token) {
-    headers.set("Authorization", `Bearer ${token}`);
+  let authToken = token;
+  if (!authToken && typeof window !== "undefined") {
+    const stored = localStorage.getItem("authToken");
+    if (stored && stored !== "undefined" && stored !== "null") {
+      authToken = stored;
+    }
   }
+
+  if (authToken) {
+    headers.set("Authorization", `Bearer ${authToken}`);
+  }
+
   if (options.body && !headers.has("Content-Type")) {
     headers.set("Content-Type", "application/json");
   }
@@ -19,7 +28,7 @@ export async function apiFetch<T>(
   const res = await fetch(`${API_BASE_URL}${path}`, {
     ...options,
     headers,
-    credentials: "include", // cookies skickas också om när vi börjar använda dem
+    credentials: "include", // cookies skickas också om de finns
   });
 
   if (res.status === 204) {
@@ -28,3 +37,4 @@ export async function apiFetch<T>(
 
   return (await res.json()) as T;
 }
+
