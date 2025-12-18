@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Menu from "./pages/Menu/Menu";
 import Cart from "./pages/Cart/Cart";
@@ -23,26 +23,30 @@ import AdminAdd from "./pages/AdminAdd/AdminAdd";
 import { useAuthStatus } from "./features/hooks/useAuthStatus";
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { isLoggedIn, user } = useAuthStatus()
-  const location = useLocation()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isLoggedIn, user } = useAuthStatus();
+  const role = user?.role;
+  console.log("ROLE FROM API:", user?.role);
+
 
   const overlayVariant: "public" | "profile" | "admin" =
-    user?.role === "ADMIN"
+    role === "ADMIN" || role === "STAFF"
       ? "admin"
-      : isLoggedIn && location.pathname.startsWith("/previous-orders")
+      : isLoggedIn
       ? "profile"
-      : "public"
+      : "public";
 
   return (
     <>
       <ScrollToTop />
+
       <Header
         isMenuOpen={isMenuOpen}
         onToggleMenu={() => setIsMenuOpen((prev) => !prev)}
         isLoggedIn={isLoggedIn}
         user={user}
       />
+
       <MenuOverlay
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
@@ -50,6 +54,7 @@ function App() {
         user={user}
         variant={overlayVariant}
       />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
@@ -67,10 +72,10 @@ function App() {
         <Route path="/admin-menu" element={<AdminMenu />} />
         <Route path="/admin/add" element={<AdminAdd />} />
       </Routes>
-
+      
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
