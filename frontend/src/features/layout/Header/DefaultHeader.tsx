@@ -18,14 +18,22 @@ export default function DefaultHeader({
       {/* MOBILE */}
       <section className="header-mobile">
         <div className="header-inner-default">
-          <aside
-            className={`hamburger-menu-container ${isMenuOpen ? "open" : ""}`}
-            onClick={onToggleMenu}
-          >
-            <span className="header-span-1"></span>
-            <span className="header-span-2"></span>
-            <span className="header-span-3"></span>
-          </aside>
+          <section className="menu-header-cart-container">
+            <Link to={"/cart"} className="cart-icon-wrapper">
+              <ShoppingCartIcon sx={{ fontSize: 30, color: "#dfd8c9" }} />
+              {totalQuantity > 0 && (
+                <span className="cart-badge">{totalQuantity}</span>
+              )}
+            </Link>
+            <aside
+              className={`hamburger-menu-container ${isMenuOpen ? "open" : ""}`}
+              onClick={onToggleMenu}
+            >
+              <span className="header-span-1"></span>
+              <span className="header-span-2"></span>
+              <span className="header-span-3"></span>
+            </aside>
+          </section>
         </div>
       </section>
 
